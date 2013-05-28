@@ -29,7 +29,7 @@
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
     <!-- TODO project name  -->
-    <name>MikeFullen.com</name>
+    <name>MikeFullen.com :: Webserver</name>
     <!--
                           		<organization>
                                                  			<name>company name</name>
