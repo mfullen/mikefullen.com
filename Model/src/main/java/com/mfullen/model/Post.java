@@ -1,45 +1,28 @@
 package com.mfullen.model;
 
 import java.util.Collection;
-import java.util.Date;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author mfullen
  */
-public class Post extends AbstractModel
+@Entity
+public class Post extends ContentModel
 {
-    private Date datePosted;
-    private String body;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Collection<Comment> comments;
-
-    public String getBody()
-    {
-        return body;
-    }
 
     public Collection<Comment> getComments()
     {
         return comments;
     }
 
-    public Date getDatePosted()
-    {
-        return datePosted;
-    }
-
-    public void setBody(String body)
-    {
-        this.body = body;
-    }
-
     public void setComments(Collection<Comment> comments)
     {
         this.comments = comments;
-    }
-
-    public void setDatePosted(Date datePosted)
-    {
-        this.datePosted = datePosted;
     }
 }
