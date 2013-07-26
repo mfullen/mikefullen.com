@@ -1,7 +1,7 @@
 package com.mfullen.model;
 
 import java.sql.Timestamp;
-import javax.persistence.JoinColumn;
+import javax.persistence.CascadeType;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -13,7 +13,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @MappedSuperclass
 public abstract class TrackableModel extends AbstractModel
 {
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     private UserModel user;
     private Timestamp datePosted;

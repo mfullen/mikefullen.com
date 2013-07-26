@@ -31,10 +31,10 @@
     <!-- TODO project name  -->
     <name>MikeFullen.com :: Webserver</name>
     <!--
-                          		<organization>
-                                                 			<name>company name</name>
-                                                 			<url>company url</url>
-                          		</organization>
+                                                                                                                                                  		<organization>
+                                                                                                                                                                                                                                                                                                 			<name>company name</name>
+                                                                                                                                                                                                                                                                                                 			<url>company url</url>
+                                                                                                                                                  		</organization>
    	-->
     <licenses>
         <license>
@@ -44,35 +44,59 @@
         </license>
     </licenses>
     <properties>
-        <wicket.version>6.8.0</wicket.version>
+        <wicket.version>6.9.1</wicket.version>
         <jetty.version>7.6.3.v20120416</jetty.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
     <dependencies>
+
+
+
         <!--  WICKET DEPENDENCIES -->
         <dependency>
             <groupId>org.apache.wicket</groupId>
             <artifactId>wicket-core</artifactId>
             <version>${wicket.version}</version>
         </dependency>
-        <!-- OPTIONAL DEPENDENCY
-      		<dependency>
-                             			<groupId>org.apache.wicket</groupId>
-                             			<artifactId>wicket-extensions</artifactId>
-                             			<version>${wicket.version}</version>
-      		</dependency>
-      		-->
+        <!--         OPTIONAL DEPENDENCY
+        -->
+        <dependency>
+            <groupId>org.apache.wicket</groupId>
+            <artifactId>wicket-extensions</artifactId>
+            <version>${wicket.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.wicketstuff</groupId>
+            <artifactId>javaee-inject</artifactId>
+            <version>1.5-RC5.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.wicket</groupId>
+            <artifactId>wicket-ioc</artifactId>
+            <version>6.9.1</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.wicket</groupId>
+            <artifactId>wicket-spring</artifactId>
+            <version>6.9.1</version>
+            <type>jar</type>
+        </dependency>
 
         <!-- LOGGING DEPENDENCIES - LOG4J -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <version>1.6.4</version>
+            <version>1.7.5</version>
         </dependency>
+
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.16</version>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>0.9.29</version>
+            <scope>runtime</scope>
         </dependency>
 
         <!--  JUNIT DEPENDENCY FOR TESTING -->
@@ -91,28 +115,71 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>1.0.0.GA</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--
+        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>REST</artifactId>
             <version>${project.version}</version>
+        </dependency>-->
+        <dependency>
+            <groupId>com.mfullen</groupId>
+            <artifactId>Data</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
+
         <!-- Jersey -->
-        <dependency>
+        <!--        <dependency>
             <groupId>com.sun.jersey</groupId>
             <artifactId>jersey-server</artifactId>
             <version>1.17.1</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>javax.persistence</artifactId>
+            <version>2.0.0</version>
+            <scope>provided</scope>
+        </dependency>-->
         <!-- Spring 3 dependencies -->
+
+
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
+            <artifactId>spring-context</artifactId>
+            <version>3.2.3.RELEASE</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-asm</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-aop</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
             <version>3.2.3.RELEASE</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
+            <artifactId>spring-tx</artifactId>
+            <version>3.2.3.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
             <version>3.2.3.RELEASE</version>
         </dependency>
 
@@ -126,7 +193,7 @@
         <dependency>
             <groupId>com.sun.jersey.contribs</groupId>
             <artifactId>jersey-spring</artifactId>
-            <version>1.8</version>
+            <version>1.17.1</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework</groupId>
@@ -148,7 +215,22 @@
                     <groupId>org.springframework</groupId>
                     <artifactId>spring-context</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-asm</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-aop</artifactId>
+                </exclusion>
             </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>3.2.3.RELEASE</version>
+
         </dependency>
 
     </dependencies>
@@ -161,6 +243,7 @@
                 <directory>src/main/java</directory>
                 <includes>
                     <include>**</include>
+                    <include>**/*.xml</include>
                 </includes>
                 <excludes>
                     <exclude>**/*.java</exclude>
@@ -175,6 +258,7 @@
                 <directory>src/test/java</directory>
                 <includes>
                     <include>**</include>
+                    <include>**/*.xml</include>
                 </includes>
                 <excludes>
                     <exclude>**/*.java</exclude>

@@ -16,12 +16,21 @@
   		The value might be either "development" (reloading when templates change) or
   		"deployment". If no configuration is found, "development" is the default. -->
 
+
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
+
     <filter>
         <filter-name>wicket.MfullenWeb</filter-name>
         <filter-class>org.apache.wicket.protocol.http.WicketFilter</filter-class>
         <init-param>
-            <param-name>applicationClassName</param-name>
-            <param-value>com.mfullen.WicketApplication</param-value>
+<!--            <param-name>applicationClassName</param-name>
+            <param-value>com.mfullen.WicketApplication</param-value>-->
+              <param-name>applicationFactoryClassName</param-name>
+            <param-value>org.apache.wicket.spring.SpringWebApplicationFactory</param-value>
         </init-param>
     </filter>
 
@@ -34,7 +43,7 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/applicationContext.xml</param-value>
     </context-param>
-
+<!--
     <servlet>
         <servlet-name>Jersey REST Service</servlet-name>
         <servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
@@ -47,19 +56,11 @@
             <param-value>true</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
-
-
     </servlet>
-
-    <listener>
-        <listener-class>
-            org.springframework.web.context.ContextLoaderListener
-        </listener-class>
-    </listener>
 
 
     <servlet-mapping>
         <servlet-name>Jersey REST Service</servlet-name>
         <url-pattern>/rest/*</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
 </web-app>

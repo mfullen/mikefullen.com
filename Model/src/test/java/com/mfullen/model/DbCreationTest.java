@@ -87,6 +87,43 @@ public class DbCreationTest
         assertEquals(userName, post.getUser().getUserName());
     }
 
+    @Test
+    public void testCreateBlog()
+    {
+        this.user.setId(null);
+        Blog blog = new Blog();
+        blog.setUser(user);
+        blog.setDatePosted(new Timestamp(System.currentTimeMillis()));
+
+        Post post1 = new Post();
+        post1.setContent("This is the first post");
+        post1.setUser(user);
+        post1.setDatePosted(new Timestamp(System.currentTimeMillis()));
+
+        Post post2 = new Post();
+        post2.setContent("This is the second post");
+        post2.setUser(user);
+        post2.setDatePosted(new Timestamp(System.currentTimeMillis()));
+
+        Comment comment = new Comment();
+        comment.setUser(user);
+        comment.setContent("This is a comment");
+        comment.setDatePosted(new Timestamp(System.currentTimeMillis()));
+
+        List<Comment> comments = new ArrayList<>();
+        comments.add(comment);
+        post1.setComments(comments);
+
+        List<Post> posts = new ArrayList<>();
+        posts.add(post1);
+        posts.add(post2);
+
+        blog.setPosts(posts);
+        session.saveOrUpdate(blog);
+
+        assertEquals(blog.getPosts().size(), 2);
+    }
+
     private void setupUser()
     {
         final long id = 1;
