@@ -7,13 +7,16 @@
    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
-    <!--    <context:component-scan base-package="com.mfullen.rest.resources"/>-->
+    <context:component-scan base-package="com.mfullen.rest.resources"/>
+    <context:component-scan base-package="com.mfullen.model.mapping"/>
     <context:component-scan base-package="com.mfullen"/>
     <context:component-scan base-package="com.mfullen.repositories"/>
     <context:component-scan base-package="com.mfullen.repositories.jpa"/>
 
     <bean id="userRepository" class="com.mfullen.repositories.jpa.JpaUserRepository"/>
     <bean id="blogRepository" class="com.mfullen.repositories.jpa.JpaBlogRepository"/>
+    <bean id="mappingService" class="com.mfullen.rest.model.mapping.RestMapper"/>
+
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="mfullen_models_test"/>

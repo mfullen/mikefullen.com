@@ -2,6 +2,9 @@ package com.mfullen.rest.resources;
 
 import com.mfullen.model.Blog;
 import com.mfullen.repositories.BlogRepository;
+import com.mfullen.rest.model.RestBlog;
+import com.mfullen.rest.model.mapping.IMappingService;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -18,13 +21,23 @@ import org.springframework.stereotype.Component;
 public class BlogResource extends AbstractREST
 {
     @Inject
-    BlogRepository blogRepository;
+    private BlogRepository blogRepository;
+    @Inject
+    private IMappingService mappingService;
 
     @Path("/")
     @GET
     public Response getAllBlogs()
     {
         Collection<Blog> blogs = this.blogRepository.getAll();
-        return Response.ok(blogs).build();
+
+        Collection<RestBlog> restBlogs = new ArrayList<RestBlog>();
+
+        for (Blog regBlog : blogs)
+        {
+            restBlogs.add(mappingService.getMapper().map(regBlog, RestBlog.class));
+        }
+
+        return Response.ok(restBlogs).build();
     }
 }

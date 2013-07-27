@@ -17,13 +17,12 @@ import javax.ws.rs.core.MediaType;
 public class AbstractREST
 {
     @Context
-    HttpServletRequest request;
+    private HttpServletRequest request;
     @Context
-    HttpServletResponse response;
+    private HttpServletResponse response;
 
     @PostConstruct
     public void init()
     {
-
     }
 }
