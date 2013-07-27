@@ -1,6 +1,6 @@
 package com.mfullen.model;
 
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,14 +14,14 @@ import javax.persistence.OneToMany;
 public class Blog extends TrackableModel
 {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Collection<Post> posts;
+    private List<Post> posts;
 
-    public Collection<Post> getPosts()
+    public List<Post> getPosts()
     {
         return posts;
     }
 
-    public void setPosts(Collection<Post> posts)
+    public void setPosts(List<Post> posts)
     {
         this.posts = posts;
     }

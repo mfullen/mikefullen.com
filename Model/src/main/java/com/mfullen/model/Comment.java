@@ -1,6 +1,6 @@
 package com.mfullen.model;
 
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,14 +14,14 @@ import javax.persistence.ManyToMany;
 public class Comment extends ContentModel
 {
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Collection<Comment> comments;
+    private List<Comment> comments;
 
-    public Collection<Comment> getComments()
+    public List<Comment> getComments()
     {
         return comments;
     }
 
-    public void setComments(Collection<Comment> comments)
+    public void setComments(List<Comment> comments)
     {
         this.comments = comments;
     }
