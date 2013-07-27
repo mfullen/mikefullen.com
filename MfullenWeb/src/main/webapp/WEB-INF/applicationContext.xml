@@ -1,16 +1,20 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="
    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
-   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
     <!--    <context:component-scan base-package="com.mfullen.rest.resources"/>-->
     <context:component-scan base-package="com.mfullen"/>
     <context:component-scan base-package="com.mfullen.repositories"/>
     <context:component-scan base-package="com.mfullen.repositories.jpa"/>
 
     <bean id="userRepository" class="com.mfullen.repositories.jpa.JpaUserRepository"/>
+    <bean id="blogRepository" class="com.mfullen.repositories.jpa.JpaBlogRepository"/>
+
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="mfullen_models_test"/>
     </bean>
@@ -20,8 +24,10 @@
                   ref="entityManagerFactory" />
     </bean>
 
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
 
-    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+    <!--    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />-->
 
 </beans>
