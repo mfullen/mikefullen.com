@@ -13,7 +13,8 @@ import javax.persistence.OneToMany;
 @Entity
 public class Blog extends TrackableModel
 {
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "blog",
+               fetch = FetchType.LAZY)
     private List<Post> posts;
 
     public List<Post> getPosts()

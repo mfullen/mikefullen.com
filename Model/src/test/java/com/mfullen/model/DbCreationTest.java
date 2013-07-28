@@ -12,9 +12,11 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.criteria.CriteriaQuery;
 import org.hibernate.Session;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 
 /**
  *
@@ -38,6 +40,7 @@ public class DbCreationTest
         this.factory = Persistence.createEntityManagerFactory(P_UNIT);
         this.entityManager = this.factory.createEntityManager();
         this.session = this.entityManager.unwrap(Session.class);
+        this.session.beginTransaction();
         this.setupUser();
     }
 
@@ -48,6 +51,7 @@ public class DbCreationTest
     }
 
     @Test
+    @Ignore
     public void testCreateDb()
     {
         final long id = 1;
@@ -62,53 +66,49 @@ public class DbCreationTest
         assertEquals(userName, existingUserModel.getUserName());
     }
 
-    @Test
-    public void testCreatePost()
+    private void saveOrUpdate(Object model)
     {
-        Post post = new Post();
-        post.setContent("This is my first post. WEEE!");
-        this.user.setId(1L);
-        post.setUser(this.user);
-        post.setDatePosted(new Timestamp(System.currentTimeMillis()));
-
-
-        Comment comment = new Comment();
-        comment.setUser(user);
-        comment.setContent("This is a comment");
-        comment.setDatePosted(new Timestamp(System.currentTimeMillis()));
-
-        List<Comment> comments = new ArrayList<>();
-        // Comment find = this.entityManager.find(Comment.class, 1L);
-        comments.add(comment);
-        post.setComments(comments);
-
-        session.saveOrUpdate(post);
-
-        assertEquals(userName, post.getUser().getUserName());
+        this.session.saveOrUpdate(model);
     }
 
     @Test
     public void testCreateBlog()
     {
-        this.user.setId(null);
-        Blog blog = new Blog();
-        blog.setUser(user);
-        blog.setDatePosted(new Timestamp(System.currentTimeMillis()));
+        saveOrUpdate(this.user);
+
+        UserModel userFromDb = entityManager.find(UserModel.class, 1L);
+        assertNotNull(userFromDb);
+
+        Blog firstBlogFromDb = entityManager.find(Blog.class, 1L);
+
+        if (firstBlogFromDb == null)
+        {
+            Blog blog = new Blog();
+            blog.setUser(userFromDb);
+            blog.setDatePosted(new Timestamp(System.currentTimeMillis()));
+            saveOrUpdate(blog);
+            firstBlogFromDb = entityManager.find(Blog.class, 1L);
+        }
+
+        assertNotNull(firstBlogFromDb);
 
         Post post1 = new Post();
         post1.setContent("This is the first post");
-        post1.setUser(user);
+        post1.setUser(userFromDb);
         post1.setDatePosted(new Timestamp(System.currentTimeMillis()));
+        post1.setBlog(firstBlogFromDb);
 
         Post post2 = new Post();
         post2.setContent("This is the second post");
-        post2.setUser(user);
+        post2.setUser(userFromDb);
         post2.setDatePosted(new Timestamp(System.currentTimeMillis()));
+        post2.setBlog(firstBlogFromDb);
 
         Comment comment = new Comment();
-        comment.setUser(user);
+        comment.setUser(userFromDb);
         comment.setContent("This is a comment");
         comment.setDatePosted(new Timestamp(System.currentTimeMillis()));
+        comment.setPost(post1);
 
         List<Comment> comments = new ArrayList<>();
         comments.add(comment);
@@ -118,17 +118,34 @@ public class DbCreationTest
         posts.add(post1);
         posts.add(post2);
 
-        blog.setPosts(posts);
-        session.saveOrUpdate(blog);
+        firstBlogFromDb.setPosts(posts);
+        saveOrUpdate(firstBlogFromDb);
 
-        assertEquals(blog.getPosts().size(), 2);
+
+        CriteriaQuery<Blog> query = entityManager.getCriteriaBuilder().createQuery(Blog.class);
+        query.from(Blog.class);
+        List<Blog> blogs = entityManager.createQuery(query).getResultList();
+        assertFalse(blogs.isEmpty());
+        assertEquals(blogs.size(), 1);
+
+        //get saved posts
+        CriteriaQuery<Post> postQuery = entityManager.getCriteriaBuilder().createQuery(Post.class);
+        postQuery.from(Post.class);
+        List<Post> postsFromDb = entityManager.createQuery(postQuery).getResultList();
+        assertFalse(postsFromDb.isEmpty());
+        assertEquals(postsFromDb.size(), 2);
+
+
+        Blog blogFromDb = blogs.get(0);
+        Post postFromDb = blogFromDb.getPosts().iterator().next();
+        assertEquals(blogFromDb.getPosts().size(), 2);
+        assertEquals(postFromDb.getBlog().getId().intValue(), 1);
+        assertEquals(postFromDb.getUser().getId().intValue(), 1);
     }
 
     private void setupUser()
     {
-        final long id = 1;
         this.user = new UserModel();
-        this.user.setId(id);
         this.user.setFirstName(firstName);
         this.user.setLastName(lastName);
         this.user.setEmail(email);

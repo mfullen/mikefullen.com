@@ -19,7 +19,7 @@
 
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
-        <property name="persistenceUnitName" value="mfullen_models_test"/>
+        <property name="persistenceUnitName" value="production"/>
     </bean>
     <bean id="transactionManager"
           class="org.springframework.orm.jpa.JpaTransactionManager">
