@@ -18,7 +18,7 @@ public class BlogMapper extends PropertyMap<Blog, RestBlog>
         map().setUserId(source.getUser().getId());
         map().setCreationDate(source.getDatePosted());
         map().setId(source.getId());
-        map().setName(null);
+        map().setTitle(source.getTitle());
         using(objectListToIdListConverter).map(source.getPosts()).setPostIds(null);
     }
 }

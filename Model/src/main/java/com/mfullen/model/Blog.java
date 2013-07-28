@@ -16,6 +16,7 @@ public class Blog extends TrackableModel
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "blog",
                fetch = FetchType.LAZY)
     private List<Post> posts;
+    private String title;
 
     public List<Post> getPosts()
     {
@@ -25,5 +26,15 @@ public class Blog extends TrackableModel
     public void setPosts(List<Post> posts)
     {
         this.posts = posts;
+    }
+
+    public String getTitle()
+    {
+        return title;
+    }
+
+    public void setTitle(String title)
+    {
+        this.title = title;
     }
 }

@@ -10,19 +10,19 @@ import java.util.List;
  */
 public class RestBlog extends AbstractModel
 {
-    private String name;
+    private String title;
     private Timestamp creationDate;
     private List<Long> postIds;
     private Long userId;
 
-    public String getName()
+    public String getTitle()
     {
-        return name;
+        return title;
     }
 
-    public void setName(String name)
+    public void setTitle(String title)
     {
-        this.name = name;
+        this.title = title;
     }
 
     public Timestamp getCreationDate()
