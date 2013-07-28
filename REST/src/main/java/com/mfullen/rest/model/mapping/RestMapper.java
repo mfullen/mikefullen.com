@@ -13,6 +13,7 @@ public class RestMapper implements IMappingService
     public RestMapper()
     {
         mapper.addMappings(new BlogMapper());
+        mapper.addMappings(new UserMapper());
     }
 
     public ModelMapper getMapper()
