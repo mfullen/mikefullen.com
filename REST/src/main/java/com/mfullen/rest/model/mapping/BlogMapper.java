@@ -10,8 +10,6 @@ import org.modelmapper.PropertyMap;
  */
 public class BlogMapper extends PropertyMap<Blog, RestBlog>
 {
-    private ObjectListToIdListConverter objectListToIdListConverter = new ObjectListToIdListConverter();
-
     @Override
     protected void configure()
     {
@@ -19,6 +17,6 @@ public class BlogMapper extends PropertyMap<Blog, RestBlog>
         map().setCreationDate(source.getDatePosted());
         map().setId(source.getId());
         map().setTitle(source.getTitle());
-        using(objectListToIdListConverter).map(source.getPosts()).setPostIds(null);
+        using(MapperUtils.getObjectListToIdListConverter()).map(source.getPosts()).setPostIds(null);
     }
 }

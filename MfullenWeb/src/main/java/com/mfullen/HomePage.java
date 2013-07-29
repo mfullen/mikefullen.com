@@ -2,11 +2,18 @@ package com.mfullen;
 
 import com.mfullen.model.UserModel;
 import com.mfullen.repositories.UserRepository;
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
+import java.io.InputStream;
 import java.util.List;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.Button;
+import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+
 import org.springframework.transaction.annotation.Transactional;
 
 public class HomePage extends WebPage
@@ -31,6 +38,58 @@ public class HomePage extends WebPage
         String name = "NONE";
         name = getUserName(name);
         add(new Label("version", name));
+
+        Form form = new Form("form")
+        {
+            @Override
+            protected void onSubmit()
+            {
+                info("Form.onSubmit executed");
+            }
+        };
+
+        Button button1 = new Button("button1")
+        {
+            @Override
+            public void onSubmit()
+            {
+                String urlParameters = "{\"title\":\"TheSuperBestBlog\" }";
+                String request = "http://localhost:8080/MfullenWeb/rest/blogs/create";
+                InputStream in = null;
+
+                try
+                {
+                    Client client = Client.create();
+
+                  WebResource webResource = client
+		   .resource(request);
+
+		String input = "{\"singer\":\"Metallica\",\"title\":\"Fade To Black\"}";
+
+		ClientResponse response = webResource.type("application/json")
+		   .post(ClientResponse.class, urlParameters);
+
+		if (response.getStatus() != 201) {
+			throw new RuntimeException("Failed : HTTP error code : "
+			     + response.getStatus());
+		}
+
+		System.out.println("Output from Server .... \n");
+		String output = response.getEntity(String.class);
+		System.out.println(output);
+
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+
+            }
+        };
+        form.add(button1);
+
+
+        add(form);
 
     }
 
