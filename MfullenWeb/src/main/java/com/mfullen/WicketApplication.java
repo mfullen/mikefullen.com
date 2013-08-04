@@ -5,6 +5,7 @@ import com.google.inject.Injector;
 import org.apache.wicket.guice.GuiceComponentInjector;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
+import org.apache.wicket.settings.IRequestCycleSettings.RenderStrategy;
 
 /**
  * Application object for your web application. If you want to run this
@@ -39,5 +40,6 @@ public class WicketApplication extends WebApplication
     {
         super.init();
         getComponentInstantiationListeners().add(new GuiceComponentInjector(this, injector));
+        getRequestCycleSettings().setRenderStrategy(RenderStrategy.ONE_PASS_RENDER);
     }
 }
