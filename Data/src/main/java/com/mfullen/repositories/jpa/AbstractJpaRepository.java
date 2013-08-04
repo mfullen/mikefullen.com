@@ -1,13 +1,14 @@
 package com.mfullen.repositories.jpa;
 
 import com.google.common.reflect.TypeToken;
+
 import com.mfullen.infrastructure.Repository;
 import com.mfullen.model.AbstractModel;
 import java.util.Collection;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -22,7 +23,7 @@ import org.hibernate.Session;
 public abstract class AbstractJpaRepository<T extends AbstractModel> implements
         Repository<T>
 {
-    @PersistenceContext
+    @Inject
     private EntityManager entityManager;
     private CriteriaBuilder builder;
     private TypeToken<T> type = new TypeToken<T>(getClass())
@@ -42,7 +43,6 @@ public abstract class AbstractJpaRepository<T extends AbstractModel> implements
     @PostConstruct
     public void init()
     {
-        //entityManager = factory.createEntityManager();
         this.builder = entityManager.getCriteriaBuilder();
     }
 

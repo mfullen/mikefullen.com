@@ -16,59 +16,36 @@
   		The value might be either "development" (reloading when templates change) or
   		"deployment". If no configuration is found, "development" is the default. -->
 
+    <filter>
+        <filter-name>guiceFilter</filter-name>
+        <filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>guiceFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
     <listener>
         <listener-class>
-            org.springframework.web.context.ContextLoaderListener
+            com.mfullen.MainServletConfig
         </listener-class>
     </listener>
-
+<!--
     <filter>
         <filter-name>wicket.MfullenWeb</filter-name>
         <filter-class>org.apache.wicket.protocol.http.WicketFilter</filter-class>
         <init-param>
-            <!--            <param-name>applicationClassName</param-name>
-            <param-value>com.mfullen.WicketApplication</param-value>-->
-            <param-name>applicationFactoryClassName</param-name>
-            <param-value>org.apache.wicket.spring.SpringWebApplicationFactory</param-value>
+            <param-name>applicationClassName</param-name>
+            <param-value>com.mfullen.WicketApplication</param-value>
         </init-param>
     </filter>
 
     <filter-mapping>
         <filter-name>wicket.MfullenWeb</filter-name>
         <url-pattern>/*</url-pattern>
-    </filter-mapping>
-    <filter>
-        <filter-name>OpenSessionInViewFilter</filter-name>
-        <filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
-    </filter>
-
-    <filter-mapping>
-        <filter-name>OpenSessionInViewFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/applicationContext.xml</param-value>
-    </context-param>
-
-    <servlet>
-        <servlet-name>Jersey REST Service</servlet-name>
-        <servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
-        <init-param>
-            <param-name>com.sun.jersey.config.property.packages</param-name>
-            <param-value>com.mfullen.rest</param-value>
-        </init-param>
-        <init-param>
-            <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
-            <param-value>true</param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
+    </filter-mapping>-->
 
 
-    <servlet-mapping>
-        <servlet-name>Jersey REST Service</servlet-name>
-        <url-pattern>/rest/*</url-pattern>
-    </servlet-mapping>
+
 </web-app>

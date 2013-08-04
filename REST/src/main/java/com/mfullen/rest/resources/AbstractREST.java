@@ -1,26 +1,28 @@
 package com.mfullen.rest.resources;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 /**
  *
  * @author mfullen
  */
-@Produces(MediaType.APPLICATION_JSON)
+@Produces(
+{
+    MediaType.APPLICATION_JSON//, MediaType.APPLICATION_XML
+})
 @Consumes(MediaType.APPLICATION_JSON)
 public class AbstractREST
 {
-    @Context
-    private HttpServletRequest request;
-    @Context
-    private HttpServletResponse response;
-
+//    @Inject
+//    private HttpServletRequest request;
+//    @Inject
+//    private HttpServletResponse response;
     @PostConstruct
     public void init()
     {

@@ -1,5 +1,6 @@
 package com.mfullen;
 
+import com.google.inject.Inject;
 import com.mfullen.model.UserModel;
 import com.mfullen.repositories.UserRepository;
 import com.sun.jersey.api.client.Client;
@@ -12,14 +13,11 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
-import org.apache.wicket.spring.injection.annot.SpringBean;
-
-import org.springframework.transaction.annotation.Transactional;
 
 public class HomePage extends WebPage
 {
     private static final long serialVersionUID = 1L;
-    @SpringBean
+    @Inject
     private UserRepository userRepository;
 
     public void setUserRepository(UserRepository userRepository)
@@ -30,7 +28,6 @@ public class HomePage extends WebPage
     public HomePage(final PageParameters parameters)
     {
         super(parameters);
-
         // userRepository = new JpaUserRepository();
 
         //add(new Label("version", getApplication().getFrameworkSettings().getVersion()));
@@ -61,22 +58,23 @@ public class HomePage extends WebPage
                 {
                     Client client = Client.create();
 
-                  WebResource webResource = client
-		   .resource(request);
+                    WebResource webResource = client
+                            .resource(request);
 
-		String input = "{\"singer\":\"Metallica\",\"title\":\"Fade To Black\"}";
+                    String input = "{\"singer\":\"Metallica\",\"title\":\"Fade To Black\"}";
 
-		ClientResponse response = webResource.type("application/json")
-		   .post(ClientResponse.class, urlParameters);
+                    ClientResponse response = webResource.type("application/json")
+                            .post(ClientResponse.class, urlParameters);
 
-		if (response.getStatus() != 201) {
-			throw new RuntimeException("Failed : HTTP error code : "
-			     + response.getStatus());
-		}
+                    if (response.getStatus() != 201)
+                    {
+                        throw new RuntimeException("Failed : HTTP error code : "
+                                + response.getStatus());
+                    }
 
-		System.out.println("Output from Server .... \n");
-		String output = response.getEntity(String.class);
-		System.out.println(output);
+                    System.out.println("Output from Server .... \n");
+                    String output = response.getEntity(String.class);
+                    System.out.println(output);
 
                 }
                 catch (Exception e)
@@ -93,7 +91,6 @@ public class HomePage extends WebPage
 
     }
 
-    @Transactional
     public final String getUserName(String name)
     {
         List<UserModel> findByUserName = userRepository.findByUserName("mfullen");
