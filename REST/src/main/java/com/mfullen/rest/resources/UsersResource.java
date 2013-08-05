@@ -28,7 +28,7 @@ public class UsersResource extends AbstractREST
     public Response getAllProfiles()
     {
         Collection<UserModel> all = this.userRepository.getAll();
-        Collection<RestUser> restUsers = new ArrayList<RestUser>();
+        Collection<RestUser> restUsers = new ArrayList<>();
 
         for (UserModel userModel : all)
         {

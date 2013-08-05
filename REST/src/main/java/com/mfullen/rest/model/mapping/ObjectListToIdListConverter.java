@@ -14,7 +14,7 @@ class ObjectListToIdListConverter extends AbstractConverter<List<? extends Abstr
     @Override
     protected List<Long> convert(List<? extends AbstractModel> s)
     {
-        List<Long> ids = new ArrayList<Long>();
+        List<Long> ids = new ArrayList<>();
         for (AbstractModel model : s)
         {
             ids.add(model.getId());

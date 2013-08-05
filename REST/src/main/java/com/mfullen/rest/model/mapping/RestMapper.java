@@ -16,6 +16,7 @@ public class RestMapper implements IMappingService
         mapper.addMappings(new UserMapper());
     }
 
+    @Override
     public ModelMapper getMapper()
     {
         return mapper;

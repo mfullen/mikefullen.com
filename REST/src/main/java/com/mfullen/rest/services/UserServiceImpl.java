@@ -1,0 +1,89 @@
+package com.mfullen.rest.services;
+
+import com.mfullen.model.Role;
+import com.mfullen.model.UserModel;
+import com.mfullen.model.UserRole;
+import com.mfullen.repositories.UserRepository;
+import com.mfullen.rest.model.AuthenticatedUserToken;
+import com.mfullen.rest.model.request.CreateUserRequest;
+import com.mfullen.rest.model.request.LoginRequest;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
+import javax.inject.Inject;
+
+/**
+ *
+ * @author mfullen
+ */
+class UserServiceImpl extends AbstractService implements UserService
+{
+    private UserRepository userRepository;
+    private PasswordEncryptionService encryptionService;
+
+    @Inject
+    public UserServiceImpl(UserRepository userRepository, PasswordEncryptionService passwordEncryptionService)
+    {
+        this.userRepository = userRepository;
+        this.encryptionService = passwordEncryptionService;
+    }
+
+    @Override
+    public AuthenticatedUserToken login(LoginRequest request)
+    {
+        UserModel user = this.userRepository.findByUserName(request.getUsername());
+
+        if (user == null)
+        {
+            throw new NullPointerException("TODO fix to custom exception");
+        }
+
+        String hashString = encryptionService.hashPassword(request.getPassword(), user.getUserName());
+
+        boolean authenticated = user.getPassword().equals(hashString);
+        if (authenticated)
+        {
+            return new AuthenticatedUserToken(user.getId(), user.getApiKey());
+        }
+
+        throw new NullPointerException("TODO fix with custom exception: Authenication Exception");
+    }
+
+    @Override
+    public AuthenticatedUserToken register(CreateUserRequest request)
+    {
+        validate(request);
+        //TODO validate email
+        UserModel existingUser = this.userRepository.findByUserName(request.getUsername());
+
+        if (existingUser != null)
+        {
+            throw new NullPointerException("TODO fix to custom exception, Username already exists");
+        }
+        UserModel createNewUser = createNewUser(request);
+        return new AuthenticatedUserToken(createNewUser.getId(), createNewUser.getApiKey());
+    }
+
+    protected UserModel createNewUser(CreateUserRequest request, Role... roles)
+    {
+        UserModel user = new UserModel();
+        user.setUserName(request.getUsername());
+        user.setEmail(request.getEmail());
+        user.setPassword(encryptionService.hashPassword(request.getPassword(), user.getUserName()));
+        user.setApiKey(encryptionService.hashToken(UUID.randomUUID().toString()));
+
+        Set<UserRole> userRoles = new HashSet<>();
+
+        for (Role role : roles)
+        {
+            UserRole userRole = new UserRole();
+            userRole.setRole(role);
+            userRole.setUser(user);
+            userRoles.add(userRole);
+        }
+
+        user.setRoles(userRoles);
+
+        return userRepository.add(user);
+    }
+}

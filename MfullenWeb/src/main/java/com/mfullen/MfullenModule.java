@@ -5,7 +5,7 @@ import com.google.inject.Provider;
 import com.google.inject.Scopes;
 import com.google.inject.Singleton;
 import com.google.inject.servlet.ServletModule;
-import com.mfullen.rest.GuiceMfullenRest;
+import com.mfullen.rest.RestApplicationServletModule;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.wicket.protocol.http.IWebApplicationFactory;
@@ -21,7 +21,7 @@ public class MfullenModule extends ServletModule
     @Override
     protected void configureServlets()
     {
-        install(new GuiceMfullenRest());
+        install(new RestApplicationServletModule());
         filter("/*").through(WicketFilter.class, createWicketFilterInitParams());
         bind(WebApplication.class).to(WicketApplication.class);
         bind(WicketFilter.class).to(CustomWicketFilter.class).in(Scopes.SINGLETON);

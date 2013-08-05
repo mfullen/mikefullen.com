@@ -3,7 +3,6 @@ import com.google.inject.Inject;
 import com.mfullen.model.UserModel;
 import com.mfullen.repositories.UserRepository;
 import java.util.Collection;
-import java.util.List;
 
 /**
  *
@@ -19,10 +18,11 @@ public class FakeResource
         this.userRepository = userRepository;
     }
 
-    public List<UserModel> getUserByName(String name)
+    public UserModel getUserByName(String name)
     {
         return this.userRepository.findByUserName(name);
     }
+
     public Collection<UserModel> getAll()
     {
         return this.userRepository.getAll();

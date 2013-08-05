@@ -17,7 +17,7 @@ public class RESTApplication extends Application
     @Override
     public Set<Class<?>> getClasses()
     {
-        Set<Class<?>> classes = new HashSet<Class<?>>();
+        Set<Class<?>> classes = new HashSet<>();
 
         classes.add(BlogResource.class);
         classes.add(UsersResource.class);

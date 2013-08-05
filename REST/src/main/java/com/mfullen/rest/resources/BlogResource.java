@@ -31,6 +31,8 @@ public class BlogResource extends AbstractREST
     private BlogRepository blogRepository;
     @Inject
     private IMappingService mappingService;
+    @Context
+    private UriInfo uriInfo;
 
     @Path("/")
     @GET
@@ -38,7 +40,7 @@ public class BlogResource extends AbstractREST
     {
         Collection<Blog> blogs = this.blogRepository.getAll();
 
-        Collection<RestBlog> restBlogs = new ArrayList<RestBlog>();
+        Collection<RestBlog> restBlogs = new ArrayList<>();
 
         for (Blog regBlog : blogs)
         {
@@ -66,7 +68,7 @@ public class BlogResource extends AbstractREST
 
     @POST
     @Path("/create")
-    public Response addBlog(CreateBlogRequest request, @Context UriInfo uriInfo)
+    public Response addBlog(CreateBlogRequest request)
     {
         Preconditions.checkNotNull(request);
         Preconditions.checkNotNull(request.getTitle());
@@ -77,8 +79,7 @@ public class BlogResource extends AbstractREST
         //blog.setUser(null);
         Blog newBlog = this.blogRepository.add(blog);
         URI newUserUri = uriInfo.getBaseUriBuilder().path(BlogResource.class).path("/" + newBlog.getId()).build();
-        ResponseBuilder response = Response.created(newUserUri);
-        response.entity(newBlog);
+        ResponseBuilder response = Response.created(newUserUri).entity(newBlog);
         return response.build();
     }
 }

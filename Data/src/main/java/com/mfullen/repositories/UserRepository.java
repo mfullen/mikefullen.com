@@ -12,5 +12,7 @@ public interface UserRepository extends Repository<UserModel>
 {
     List<UserModel> findByEmail(String email);
 
-    List<UserModel> findByUserName(String username);
+    UserModel findByUserName(String username);
+
+    UserModel findByApiKey(String apikey);
 }

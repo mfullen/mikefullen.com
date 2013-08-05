@@ -17,8 +17,20 @@ public class JpaUserRepository extends AbstractJpaRepository<UserModel> implemen
         return this.findByField(UserModel_.email, email);
     }
 
-    public List<UserModel> findByUserName(String username)
+    public UserModel findByUserName(String username)
     {
-        return this.findByField(UserModel_.userName, username);
+        List<UserModel> findByField = this.findByField(UserModel_.userName, username);
+        return getSingle(findByField);
+    }
+
+    public UserModel findByApiKey(String apikey)
+    {
+        List<UserModel> findByField = this.findByField(UserModel_.apiKey, apikey);
+        return getSingle(findByField);
+    }
+
+    protected UserModel getSingle(List<UserModel> models)
+    {
+        return models.isEmpty() ? null : models.get(0);
     }
 }

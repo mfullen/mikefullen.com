@@ -93,10 +93,10 @@ public class HomePage extends WebPage
 
     public final String getUserName(String name)
     {
-        List<UserModel> findByUserName = userRepository.findByUserName("mfullen");
+        UserModel findByUserName = userRepository.findByUserName("mfullen");
         if (findByUserName != null)
         {
-            name = findByUserName.isEmpty() ? "" : findByUserName.get(0).getUserName();
+            name = findByUserName.getUserName();
         }
         else
         {
