@@ -6,6 +6,7 @@ import com.mfullen.rest.model.RestUser;
 import com.mfullen.rest.model.mapping.IMappingService;
 import java.util.ArrayList;
 import java.util.Collection;
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -25,6 +26,10 @@ public class UsersResource extends AbstractREST
 
     @Path("/")
     @GET
+    @RolesAllowed(
+    {
+        "AUTHENICATED"
+    })
     public Response getAllProfiles()
     {
         Collection<UserModel> all = this.userRepository.getAll();

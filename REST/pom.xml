@@ -30,6 +30,7 @@
         <jersey.version>1.17.1</jersey.version>
     </properties>
     <dependencies>
+
         <dependency>
             <groupId>com.mfullen</groupId>
             <artifactId>Data</artifactId>
@@ -80,7 +81,7 @@
         <dependency>
             <groupId>com.sun.jersey</groupId>
             <artifactId>jersey-grizzly2</artifactId>
-            <version>${jersey.version}</version>
+            <version>1.17.1</version>
             <scope>test</scope>
         </dependency>
 
@@ -144,6 +145,40 @@
             <groupId>org.apache.bval</groupId>
             <artifactId>bval-guice</artifactId>
             <version>0.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.spec</groupId>
+            <artifactId>jboss-javaee-6.0</artifactId>
+            <version>1.0.0.Final</version>
+            <type>pom</type>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.sun.jersey.jersey-test-framework</groupId>
+            <artifactId>jersey-test-framework-grizzly2</artifactId>
+            <version>1.17.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey.jersey-test-framework</groupId>
+            <artifactId>jersey-test-framework-core</artifactId>
+            <version>1.17.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey.jersey-test-framework</groupId>
+            <artifactId>jersey-test-framework-inmemory</artifactId>
+            <version>1.17.1</version>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-web-api</artifactId>
+            <version>6.0</version>
+            <type>jar</type>
         </dependency>
     </dependencies>
 </project>

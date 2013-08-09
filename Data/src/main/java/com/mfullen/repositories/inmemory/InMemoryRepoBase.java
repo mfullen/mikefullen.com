@@ -16,7 +16,7 @@ public class InMemoryRepoBase<T extends AbstractModel> implements
     private List<T> entities = new ArrayList<T>();
     private long count;
 
-    public T add(T entity)
+    public T save(T entity)
     {
         if (this.entities.add(entity))
         {

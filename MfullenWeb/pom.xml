@@ -80,13 +80,27 @@
             <version>6.9.1</version>
             <type>jar</type>
         </dependency>
-        <!--        <dependency>
-            <groupId>org.apache.wicket</groupId>
-            <artifactId>wicket-spring</artifactId>
-            <version>6.9.1</version>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-core</artifactId>
+            <version>1.17.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>javax.persistence</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>1.17.1</version>
             <type>jar</type>
-        </dependency>-->
-
+        </dependency>
+        <dependency>
+            <groupId>javax.transaction</groupId>
+            <artifactId>jta</artifactId>
+            <version>1.1</version>
+        </dependency>
         <!-- LOGGING DEPENDENCIES - LOG4J -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -116,18 +130,6 @@
             <version>${jetty.version}</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-            <version>1.0.0.GA</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>javax.persistence</artifactId>
-            <version>2.1.0</version>
-            <scope>test</scope>
-        </dependency>
 
         <dependency>
             <groupId>org.apache.derby</groupId>
@@ -153,12 +155,7 @@
             <version>5.1.25</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.sun.jersey</groupId>
-            <artifactId>jersey-client</artifactId>
-            <version>1.17.1</version>
-            <type>jar</type>
-        </dependency>
+
     </dependencies>
     <build>
         <resources>

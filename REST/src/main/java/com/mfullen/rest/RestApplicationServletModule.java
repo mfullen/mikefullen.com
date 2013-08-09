@@ -1,11 +1,14 @@
 package com.mfullen.rest;
 
 import com.google.inject.Scopes;
+import com.google.inject.servlet.GuiceFilter;
 import com.mfullen.rest.resources.ResourceModule;
 import com.mfullen.rest.services.ServiceModule;
 import com.sun.jersey.api.core.ResourceConfig;
 import com.sun.jersey.guice.JerseyServletModule;
 import com.sun.jersey.guice.spi.container.servlet.GuiceContainer;
+import com.sun.jersey.spi.container.ContainerRequestFilter;
+import com.sun.jersey.spi.container.ResourceFilter;
 import java.util.HashMap;
 import java.util.Map;
 import javax.ws.rs.core.UriInfo;
@@ -25,13 +28,16 @@ public class RestApplicationServletModule extends JerseyServletModule
     @Override
     protected void configureServlets()
     {
+        //binder().requireExplicitBindings();
         install(new ServiceModule());
         install(new ResourceModule());
         install(new ValidationModule());
 
         bind(GuiceContainer.class);
-        bind(SecurityContextFilter.class);
-        bind(ResourceFilterFactory.class);
+        bind(GuiceFilter.class);
+        bind(ContainerRequestFilter.class).to(SecurityContextFilter.class).in(Scopes.SINGLETON);
+        bind(ResourceFilter.class).to(SecurityContextFilter.class).in(Scopes.SINGLETON);
+        bind(com.sun.jersey.spi.container.ResourceFilterFactory.class).to(ResourceFilterFactory.class).in(Scopes.SINGLETON);
 
 
         bind(JacksonJsonProvider.class).in(Scopes.SINGLETON);

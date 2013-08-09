@@ -77,7 +77,7 @@ public class BlogResource extends AbstractREST
         blog.setTitle(request.getTitle());
         blog.setDatePosted(new Timestamp(System.currentTimeMillis()));
         //blog.setUser(null);
-        Blog newBlog = this.blogRepository.add(blog);
+        Blog newBlog = this.blogRepository.save(blog);
         URI newUserUri = uriInfo.getBaseUriBuilder().path(BlogResource.class).path("/" + newBlog.getId()).build();
         ResponseBuilder response = Response.created(newUserUri).entity(newBlog);
         return response.build();

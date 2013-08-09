@@ -10,6 +10,7 @@ import com.sun.jersey.spi.container.ContainerRequestFilter;
 import com.sun.jersey.spi.container.ContainerResponseFilter;
 import com.sun.jersey.spi.container.ResourceFilter;
 import javax.inject.Inject;
+import javax.ws.rs.ext.Provider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,6 +18,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author mfullen
  */
+@Provider
 public class SecurityContextFilter implements ResourceFilter,
                                               ContainerRequestFilter
 {

@@ -30,6 +30,6 @@ public class FakeResource
 
     public void addUser(UserModel model)
     {
-        this.userRepository.add(model);
+        this.userRepository.save(model);
     }
 }

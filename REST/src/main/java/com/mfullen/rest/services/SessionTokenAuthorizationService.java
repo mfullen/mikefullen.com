@@ -41,7 +41,7 @@ public class SessionTokenAuthorizationService implements AuthorizationService
 
         // sessionToken.setLastUpdated(new Date());
         //set last login date.
-        userRepository.update(user);
+        userRepository.save(user);
         externalUser = new PrincipalUserImpl(user);
 
 

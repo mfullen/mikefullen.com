@@ -13,8 +13,13 @@ import javax.inject.Inject;
  */
 public class ResourceFilterFactory extends RolesAllowedResourceFilterFactory
 {
+    private ResourceFilter resourceFilter;
+
     @Inject
-    private SecurityContextFilter securityContextFilter;
+    public ResourceFilterFactory(ResourceFilter resourceFilter)
+    {
+        this.resourceFilter = resourceFilter;
+    }
 
     @Override
     public List<ResourceFilter> create(AbstractMethod am)
@@ -26,7 +31,7 @@ public class ResourceFilterFactory extends RolesAllowedResourceFilterFactory
         }
         List<ResourceFilter> securityFilters = new ArrayList<>(filters);
         //put the Security Filter first in line
-        securityFilters.add(0, securityContextFilter);
+        securityFilters.add(0, resourceFilter);
         return securityFilters;
     }
 }

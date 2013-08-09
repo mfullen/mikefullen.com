@@ -5,15 +5,18 @@ package com.mfullen.rest.services;
 
 import static org.junit.Assert.*;
 
+import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.persist.jpa.JpaPersistModule;
+import com.mfullen.model.Role;
 import com.mfullen.rest.PersistenceInit;
-import com.mfullen.rest.ResourceFilterFactory;
+
 import com.mfullen.rest.RestApplicationServletModule;
 import com.mfullen.rest.model.AuthenticatedUserToken;
 import com.mfullen.rest.model.request.CreateUserRequest;
 import com.mfullen.rest.model.request.LoginRequest;
+import com.sun.jersey.spi.container.ResourceFilterFactory;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -28,7 +31,14 @@ public class UserServiceImplTest
     @Before
     public void setup()
     {
-        Injector injector = Guice.createInjector(new JpaPersistModule("test"), new RestApplicationServletModule());
+        Injector injector = Guice.createInjector(new JpaPersistModule("test"), new RestApplicationServletModule(), new AbstractModule()
+        {
+            @Override
+            protected void configure()
+            {
+                bind(PersistenceInit.class);
+            }
+        });
         injector.getInstance(PersistenceInit.class);
         this.userService = injector.getInstance(UserService.class);
         injector.getInstance(ResourceFilterFactory.class);
@@ -41,7 +51,7 @@ public class UserServiceImplTest
         request.setEmail("test@test.com");
         request.setUsername("batman");
         request.setPassword("hunter2");
-        AuthenticatedUserToken register = this.userService.register(request);
+        AuthenticatedUserToken register = this.userService.register(request, Role.AUTHENTICATED);
         assertEquals(1, register.getUserId(), 0);
 
         LoginRequest loginRequest = new LoginRequest("batman", "hunter2");
@@ -52,7 +62,6 @@ public class UserServiceImplTest
     @Test
     public void testRegister()
     {
-
     }
 
     @Test
@@ -62,7 +71,7 @@ public class UserServiceImplTest
         request.setEmail("test@test.com");
         request.setUsername("batman");
         request.setPassword("hunter2");
-        AuthenticatedUserToken register = this.userService.register(request);
+        AuthenticatedUserToken register = this.userService.register(request, Role.AUTHENTICATED);
         assertEquals(1, register.getUserId(), 0);
 
         // assertFalse("hunter2".equals(request));

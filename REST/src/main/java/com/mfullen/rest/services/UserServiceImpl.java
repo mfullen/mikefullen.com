@@ -50,17 +50,16 @@ class UserServiceImpl extends AbstractService implements UserService
     }
 
     @Override
-    public AuthenticatedUserToken register(CreateUserRequest request)
+    public AuthenticatedUserToken register(CreateUserRequest request, Role role)
     {
         validate(request);
-        //TODO validate email
         UserModel existingUser = this.userRepository.findByUserName(request.getUsername());
 
         if (existingUser != null)
         {
             throw new NullPointerException("TODO fix to custom exception, Username already exists");
         }
-        UserModel createNewUser = createNewUser(request);
+        UserModel createNewUser = createNewUser(request, role);
         return new AuthenticatedUserToken(createNewUser.getId(), createNewUser.getApiKey());
     }
 
@@ -84,6 +83,6 @@ class UserServiceImpl extends AbstractService implements UserService
 
         user.setRoles(userRoles);
 
-        return userRepository.add(user);
+        return userRepository.save(user);
     }
 }

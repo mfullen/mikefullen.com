@@ -6,7 +6,7 @@ package com.mfullen.model;
  */
 public enum Role
 {
-    AUTHENICATED,
+    AUTHENTICATED,
     ADMIN,
     ANON
 }

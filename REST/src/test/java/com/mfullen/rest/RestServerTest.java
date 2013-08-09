@@ -2,6 +2,7 @@ package com.mfullen.rest;
 
 import static org.junit.Assert.*;
 
+import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.persist.jpa.JpaPersistModule;
@@ -50,7 +51,14 @@ public class RestServerTest
 
         Injector injector = Guice.createInjector(
                 new JpaPersistModule("test"),
-                new RestApplicationServletModule());
+                new RestApplicationServletModule(), new AbstractModule() {
+
+            @Override
+            protected void configure()
+            {
+               bind(PersistenceInit.class);
+            }
+        });
 
         injector.getInstance(PersistenceInit.class);
 
@@ -66,7 +74,7 @@ public class RestServerTest
         Blog blog = new Blog();
         blog.setTitle("The best blog");
         blog.setDatePosted(new Timestamp(System.currentTimeMillis()));
-        blogRepository.add(blog);
+        blogRepository.save(blog);
 
 
     }

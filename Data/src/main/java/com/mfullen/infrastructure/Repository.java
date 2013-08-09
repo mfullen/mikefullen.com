@@ -8,9 +8,7 @@ import java.util.Collection;
  */
 public interface Repository<TEntity>
 {
-    TEntity add(TEntity entity);
-
-    TEntity update(TEntity entity);
+    TEntity save(TEntity entity);
 
     TEntity delete(TEntity entity);
 

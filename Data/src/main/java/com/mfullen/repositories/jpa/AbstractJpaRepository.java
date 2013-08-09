@@ -1,7 +1,6 @@
 package com.mfullen.repositories.jpa;
 
 import com.google.common.reflect.TypeToken;
-
 import com.mfullen.infrastructure.Repository;
 import com.mfullen.model.AbstractModel;
 import java.util.Collection;
@@ -46,7 +45,7 @@ public abstract class AbstractJpaRepository<T extends AbstractModel> implements
         this.builder = entityManager.getCriteriaBuilder();
     }
 
-    public T add(T entity)
+    public T save(T entity)
     {
         return this.saveOrUpdate(entity);
     }
