@@ -4,6 +4,9 @@ import com.mfullen.model.Role;
 import com.mfullen.model.UserModel;
 import com.mfullen.model.UserRole;
 import com.mfullen.repositories.UserRepository;
+import com.mfullen.rest.exceptions.AuthenticationException;
+import com.mfullen.rest.exceptions.DuplicateUserException;
+import com.mfullen.rest.exceptions.UserNotFoundException;
 import com.mfullen.rest.model.AuthenticatedUserToken;
 import com.mfullen.rest.model.request.CreateUserRequest;
 import com.mfullen.rest.model.request.LoginRequest;
@@ -31,11 +34,13 @@ class UserServiceImpl extends AbstractService implements UserService
     @Override
     public AuthenticatedUserToken login(LoginRequest request)
     {
-        UserModel user = this.userRepository.findByUserName(request.getUsername());
+        validate(request);
 
+        UserModel user = this.userRepository.findByUserName(request.getUsername());
+        
         if (user == null)
         {
-            throw new NullPointerException("TODO fix to custom exception");
+            throw new UserNotFoundException();
         }
 
         String hashString = encryptionService.hashPassword(request.getPassword(), user.getUserName());
@@ -46,7 +51,7 @@ class UserServiceImpl extends AbstractService implements UserService
             return new AuthenticatedUserToken(user.getId(), user.getApiKey());
         }
 
-        throw new NullPointerException("TODO fix with custom exception: Authenication Exception");
+        throw new AuthenticationException();
     }
 
     @Override
@@ -57,7 +62,7 @@ class UserServiceImpl extends AbstractService implements UserService
 
         if (existingUser != null)
         {
-            throw new NullPointerException("TODO fix to custom exception, Username already exists");
+            throw new DuplicateUserException();
         }
         UserModel createNewUser = createNewUser(request, role);
         return new AuthenticatedUserToken(createNewUser.getId(), createNewUser.getApiKey());

@@ -18,6 +18,7 @@ public abstract class AbstractService
     protected void validate(Object request)
     {
         Set<? extends ConstraintViolation<?>> constraintViolations = validator.validate(request);
+
         if (constraintViolations.size() > 0)
         {
             throw new ValidationException(constraintViolations);

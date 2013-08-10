@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
@@ -51,10 +52,24 @@ public class AccountResource extends AbstractREST
     public Response register(CreateUserRequest request)
     {
         //UserService userService = userServiceProvider.get();
-        AuthenticatedUserToken token = userService.register(request, Role.AUTHENTICATED);
+        Response response = null;
+        try
+        {
+            AuthenticatedUserToken token = userService.register(request, Role.AUTHENTICATED);
+            URI location = uriInfo.getAbsolutePathBuilder().path(token.getUserId().toString()).build();
+            response = Response.created(location).entity(token).build();
+        }
+        catch (WebApplicationException exception)
+        {
+            response = exception.getResponse();
+        }
+        finally
+        {
+            return response;
+        }
+
         //send registration email?
-        URI location = uriInfo.getAbsolutePathBuilder().path(token.getUserId().toString()).build();
-        return Response.created(location).entity(token).build();
+
     }
 
     @Path("login")
@@ -64,7 +79,7 @@ public class AccountResource extends AbstractREST
     {
         //UserService userService = userServiceProvider.get();
         AuthenticatedUserToken token = userService.login(request);
-        URI location = UriBuilder.fromPath(uriInfo.getBaseUri() + "user/" + token.getUserId()).build();
+        URI location = UriBuilder.fromPath(uriInfo.getBaseUri() + "account/" + token.getUserId()).build();
         return Response.ok().entity(token).contentLocation(location).build();
     }
 }

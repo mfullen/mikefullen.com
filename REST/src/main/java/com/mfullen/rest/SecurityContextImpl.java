@@ -31,10 +31,12 @@ class SecurityContextImpl implements SecurityContext
         {
             return true;
         }
+        //if we didn't find the user, we can't authorize
         if (externalUser == null)
         {
-            throw new NullPointerException("TBD: User is null");
+            return false;
         }
+        //look through the users roles and see if it matches the role being checked
         for (String userRole : externalUser.getRoles())
         {
             for (Role roll : Role.values())

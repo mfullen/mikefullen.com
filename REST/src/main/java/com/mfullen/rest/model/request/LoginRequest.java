@@ -1,12 +1,22 @@
 package com.mfullen.rest.model.request;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
+
 /**
  *
  * @author mfullen
  */
 public class LoginRequest
 {
+    @NotNull
+    @Valid
+    @Length(min = 4, max = 50)
     private String username;
+    @NotNull
+    @Valid
+    @Length(min = 6, max = 30)
     private String password;
 
     public LoginRequest()
