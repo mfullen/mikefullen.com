@@ -6,7 +6,7 @@
     <artifactId>Models</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>Models</name>
+    <name>Models :: Parent</name>
     <modules>
         <module>UserModel</module>
     <module>Blog</module>
