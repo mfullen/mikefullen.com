@@ -29,9 +29,9 @@ public class AccountResource extends AbstractREST
     @Context
     private UriInfo uriInfo;
 
-    public void setUserServiceProvider(UserService userServiceProvider)
+    protected void setUserServiceProvider(UserService userService)
     {
-        this.userService = userServiceProvider;
+        this.userService = userService;
     }
 
     @GET

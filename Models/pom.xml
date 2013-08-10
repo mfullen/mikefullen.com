@@ -1,17 +1,17 @@
-<?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>com.pwf</groupId>
-        <artifactId>mfullenWeb</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
+
     <groupId>com.mfullen</groupId>
-    <artifactId>Model</artifactId>
+    <artifactId>Models</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>MikeFullen.com :: Models</name>
-    <url>http://maven.apache.org</url>
+    <packaging>pom</packaging>
+    <name>Models</name>
+    <modules>
+        <module>UserModel</module>
+    <module>Blog</module>
+    <module>ModelApi</module>
+  </modules>
     <build>
         <plugins>
             <plugin>
@@ -26,10 +26,6 @@
 
         </plugins>
     </build>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
     <dependencies>
         <dependency>
             <groupId>org.hibernate</groupId>

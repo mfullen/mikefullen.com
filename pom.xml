@@ -8,8 +8,9 @@
   <name>MikeFullen.com</name>
   <modules>
     <module>MfullenWeb</module>
-    <module>Model</module>
     <module>Data</module>
     <module>REST</module>
+    <module>DataAccess-api</module>
+    <module>Models</module>
   </modules>
 </project>
