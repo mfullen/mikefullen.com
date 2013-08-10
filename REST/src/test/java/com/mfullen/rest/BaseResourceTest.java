@@ -52,33 +52,15 @@ public abstract class BaseResourceTest extends MyGuiceJerseyTest
 
     }
 
-
-
-//
-//    public BaseResourceTest(Class<? extends JerseyModule> guiceConfClass)
-//    {
-//        super(guiceConfClass);
-//    }
-//
-//    public BaseResourceTest()
-//    {
-//        super(TestJerseyModule.class);
-//    }
     @Override
     protected Client getClient(TestContainer tc, AppDescriptor ad)
     {
         DefaultClientConfig config = new DefaultClientConfig();
         config.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
-//        ResourceConfig rc = null;
-//        if (ad instanceof LowLevelAppDescriptor)
-//        {
-//            LowLevelAppDescriptor lowLevelAppDescriptor = (LowLevelAppDescriptor) ad;
-//            rc = lowLevelAppDescriptor.getResourceConfig();
-//        }
-        return Client.create(config);
-        //return Client.create(config, new GuiceComponentProviderFactory(rc, injector));
 
+        return Client.create(config);
     }
+
     protected LoginRequest createLoginRequest()
     {
         LoginRequest request = new LoginRequest();

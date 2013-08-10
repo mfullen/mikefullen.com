@@ -28,12 +28,14 @@ import javax.ws.rs.core.UriBuilder;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
  *
  * @author mfullen
  */
+@Ignore
 public class RestServerTest
 {
     static final URI BASE_URI = getBaseURI();
@@ -51,12 +53,12 @@ public class RestServerTest
 
         Injector injector = Guice.createInjector(
                 new JpaPersistModule("test"),
-                new RestApplicationServletModule(), new AbstractModule() {
-
+                new RestApplicationServletModule(), new AbstractModule()
+        {
             @Override
             protected void configure()
             {
-               bind(PersistenceInit.class);
+                bind(PersistenceInit.class);
             }
         });
 
@@ -86,6 +88,7 @@ public class RestServerTest
     }
 
     @Test
+    @Ignore
     public void testGetAll() throws IOException
     {
         Client client = Client.create(new DefaultClientConfig());
@@ -105,6 +108,7 @@ public class RestServerTest
 
     }
 
+    @Ignore
     @Test
     public void testGetById() throws IOException
     {

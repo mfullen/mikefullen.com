@@ -26,8 +26,8 @@ public class ResourceModule extends AbstractModule
     protected void configure()
     {
         bind(IMappingService.class).to(RestMapper.class);
-        //bind(BlogRepository.class).to(JpaBlogRepository.class);
-        //bind(UserRepository.class).to(JpaUserRepository.class);
+        bind(BlogRepository.class).to(JpaBlogRepository.class);
+        bind(UserRepository.class).to(JpaUserRepository.class);
 
 
         for (Class<?> resource : rc.getClasses())
