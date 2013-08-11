@@ -7,9 +7,9 @@ import com.mfullen.repositories.UserRepository;
 import com.mfullen.rest.exceptions.AuthenticationException;
 import com.mfullen.rest.exceptions.DuplicateUserException;
 import com.mfullen.rest.exceptions.UserNotFoundException;
-import com.mfullen.rest.model.AuthenticatedUserToken;
-import com.mfullen.rest.model.request.CreateUserRequest;
-import com.mfullen.rest.model.request.LoginRequest;
+import com.mfullen.rest.request.CreateUserRequest;
+import com.mfullen.rest.request.LoginRequest;
+import com.mfullen.rest.security.AuthenticatedUserToken;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -37,7 +37,7 @@ class UserServiceImpl extends AbstractService implements UserService
         validate(request);
 
         UserModel user = this.userRepository.findByUserName(request.getUsername());
-        
+
         if (user == null)
         {
             throw new UserNotFoundException();
@@ -48,7 +48,7 @@ class UserServiceImpl extends AbstractService implements UserService
         boolean authenticated = user.getPassword().equals(hashString);
         if (authenticated)
         {
-            return new AuthenticatedUserToken(user.getId(), user.getApiKey());
+            return new AuthenticatedUserToken(user.getId(), user.getApiKey(),user.getUserName());
         }
 
         throw new AuthenticationException();
@@ -65,7 +65,7 @@ class UserServiceImpl extends AbstractService implements UserService
             throw new DuplicateUserException();
         }
         UserModel createNewUser = createNewUser(request, role);
-        return new AuthenticatedUserToken(createNewUser.getId(), createNewUser.getApiKey());
+        return new AuthenticatedUserToken(createNewUser.getId(), createNewUser.getApiKey(), createNewUser.getUserName());
     }
 
     protected UserModel createNewUser(CreateUserRequest request, Role... roles)

@@ -1,4 +1,4 @@
-package com.mfullen.rest.model.request;
+package com.mfullen.rest.request;
 
 /**
  *

@@ -3,7 +3,7 @@ package com.mfullen.rest;
 import com.mfullen.model.Role;
 import com.mfullen.model.UserModel;
 import com.mfullen.model.UserRole;
-import com.mfullen.rest.model.request.LoginRequest;
+import com.mfullen.rest.request.LoginRequest;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 import com.sun.jersey.api.json.JSONConfiguration;

@@ -1,4 +1,4 @@
-package com.mfullen.rest.model;
+package com.mfullen.rest.security;
 
 /**
  *
@@ -8,15 +8,27 @@ public class AuthenticatedUserToken
 {
     private Long userId;
     private String token;
+    private String username;
 
     public AuthenticatedUserToken()
     {
     }
 
-    public AuthenticatedUserToken(Long userId, String token)
+    public AuthenticatedUserToken(Long userId, String token, String username)
     {
         this.userId = userId;
         this.token = token;
+        this.username = username;
+    }
+
+    public String getUsername()
+    {
+        return username;
+    }
+
+    public void setUsername(String username)
+    {
+        this.username = username;
     }
 
     public String getToken()

@@ -4,6 +4,7 @@
 package com.mfullen.rest.resources;
 
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 
 import com.google.inject.Module;
@@ -14,9 +15,9 @@ import com.mfullen.rest.exceptions.AuthenticationException;
 import com.mfullen.rest.exceptions.DuplicateUserException;
 import com.mfullen.rest.exceptions.UserNotFoundException;
 import com.mfullen.rest.exceptions.ValidationException;
-import com.mfullen.rest.model.AuthenticatedUserToken;
-import com.mfullen.rest.model.request.CreateUserRequest;
-import com.mfullen.rest.model.request.LoginRequest;
+import com.mfullen.rest.request.CreateUserRequest;
+import com.mfullen.rest.request.LoginRequest;
+import com.mfullen.rest.security.AuthenticatedUserToken;
 import com.mfullen.rest.services.UserService;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
@@ -25,7 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response.Status;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -57,7 +57,7 @@ public class AccountResourceTest extends BaseResourceTest
     @Test
     public void testRegister() throws IOException
     {
-        AuthenticatedUserToken authenticatedUserToken = new AuthenticatedUserToken(BaseResourceTest.TEST_USER.getId(), BaseResourceTest.TEST_USER.getApiKey());
+        AuthenticatedUserToken authenticatedUserToken = new AuthenticatedUserToken(TEST_USER.getId(), TEST_USER.getApiKey(), TEST_USER.getUserName());
         when(userService.register(any(CreateUserRequest.class), any(Role.class))).thenReturn(authenticatedUserToken);
         when(userService.login(any(LoginRequest.class))).thenReturn(authenticatedUserToken);
         AuthenticatedUserToken token = registerUser();
@@ -91,7 +91,7 @@ public class AccountResourceTest extends BaseResourceTest
     @Test
     public void testSuccessfulLogin()
     {
-        AuthenticatedUserToken authenticatedUserToken = new AuthenticatedUserToken(BaseResourceTest.TEST_USER.getId(), BaseResourceTest.TEST_USER.getApiKey());
+        AuthenticatedUserToken authenticatedUserToken = new AuthenticatedUserToken(TEST_USER.getId(), TEST_USER.getApiKey(), TEST_USER.getUserName());
         when(userService.register(any(CreateUserRequest.class), any(Role.class))).thenReturn(authenticatedUserToken);
         when(userService.login(any(LoginRequest.class))).thenReturn(authenticatedUserToken);
         ClientResponse response = resource().path("account/login").entity(createLoginRequest(), MediaType.APPLICATION_JSON).post(ClientResponse.class);

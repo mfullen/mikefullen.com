@@ -1,9 +1,9 @@
 package com.mfullen.rest.services;
 
 import com.mfullen.model.Role;
-import com.mfullen.rest.model.AuthenticatedUserToken;
-import com.mfullen.rest.model.request.CreateUserRequest;
-import com.mfullen.rest.model.request.LoginRequest;
+import com.mfullen.rest.request.CreateUserRequest;
+import com.mfullen.rest.request.LoginRequest;
+import com.mfullen.rest.security.AuthenticatedUserToken;
 
 /**
  *

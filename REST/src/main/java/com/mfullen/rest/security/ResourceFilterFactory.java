@@ -1,4 +1,4 @@
-package com.mfullen.rest;
+package com.mfullen.rest.security;
 
 import com.sun.jersey.api.container.filter.RolesAllowedResourceFilterFactory;
 import com.sun.jersey.api.model.AbstractMethod;

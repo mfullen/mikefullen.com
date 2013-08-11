@@ -5,7 +5,7 @@ import com.mfullen.model.Blog;
 import com.mfullen.repositories.BlogRepository;
 import com.mfullen.rest.model.RestBlog;
 import com.mfullen.rest.model.mapping.IMappingService;
-import com.mfullen.rest.model.request.CreateBlogRequest;
+import com.mfullen.rest.request.CreateBlogRequest;
 import java.net.URI;
 import java.sql.Timestamp;
 import java.util.ArrayList;

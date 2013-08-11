@@ -7,6 +7,7 @@
     <class>com.mfullen.model.Post</class>
     <class>com.mfullen.model.UserModel</class>
     <class>com.mfullen.model.UserRole</class>
+    <class>com.mfullen.model.VerificationToken</class>
     <properties>
       <property name="hibernate.archive.autodetection" value="class, hbm"/>
       <property name="hibernate.connection.url" value="jdbc:derby:memory:jpa;create=true"/>

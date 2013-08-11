@@ -1,10 +1,11 @@
 package com.mfullen.rest.resources;
 
 import com.mfullen.model.Role;
-import com.mfullen.rest.model.AuthenticatedUserToken;
-import com.mfullen.rest.model.request.CreateUserRequest;
-import com.mfullen.rest.model.request.LoginRequest;
+import com.mfullen.rest.request.CreateUserRequest;
+import com.mfullen.rest.request.LoginRequest;
+import com.mfullen.rest.security.AuthenticatedUserToken;
 import com.mfullen.rest.services.UserService;
+import com.mfullen.rest.services.VerificationTokenService;
 import java.net.URI;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
@@ -27,6 +28,8 @@ public class AccountResource extends AbstractREST
 {
     @Inject
     private UserService userService;
+    @Inject
+    private VerificationTokenService verificationTokenService;
     @Context
     private UriInfo uriInfo;
 
@@ -56,6 +59,7 @@ public class AccountResource extends AbstractREST
         try
         {
             AuthenticatedUserToken token = userService.register(request, Role.AUTHENTICATED);
+            verificationTokenService.sendEmailRegistrationToken(token.getUsername());
             URI location = uriInfo.getAbsolutePathBuilder().path(token.getUserId().toString()).build();
             response = Response.created(location).entity(token).build();
         }

@@ -1,4 +1,4 @@
-package com.mfullen.rest;
+package com.mfullen.rest.security;
 
 import com.mfullen.model.Role;
 import java.security.Principal;

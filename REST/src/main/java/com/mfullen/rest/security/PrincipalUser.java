@@ -1,4 +1,4 @@
-package com.mfullen.rest;
+package com.mfullen.rest.security;
 
 import java.security.Principal;
 import java.util.Collection;

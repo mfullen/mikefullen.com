@@ -1,5 +1,7 @@
 package com.mfullen.rest;
 
+import com.mfullen.rest.security.ResourceFilterFactory;
+import com.mfullen.rest.security.SecurityContextFilter;
 import com.google.inject.Scopes;
 import com.google.inject.servlet.GuiceFilter;
 import com.mfullen.rest.resources.ResourceModule;
@@ -11,7 +13,6 @@ import com.sun.jersey.spi.container.ContainerRequestFilter;
 import com.sun.jersey.spi.container.ResourceFilter;
 import java.util.HashMap;
 import java.util.Map;
-import javax.ws.rs.core.UriInfo;
 import org.apache.bval.guice.ValidationModule;
 import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
 

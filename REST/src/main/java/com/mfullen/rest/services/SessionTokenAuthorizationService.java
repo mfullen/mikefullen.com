@@ -2,9 +2,9 @@ package com.mfullen.rest.services;
 
 import com.mfullen.model.UserModel;
 import com.mfullen.repositories.UserRepository;
-import com.mfullen.rest.AuthorizationRequestContext;
-import com.mfullen.rest.PrincipalUser;
-import com.mfullen.rest.PrincipalUserImpl;
+import com.mfullen.rest.security.AuthorizationRequestContext;
+import com.mfullen.rest.security.PrincipalUser;
+import com.mfullen.rest.security.PrincipalUserImpl;
 
 /**
  *

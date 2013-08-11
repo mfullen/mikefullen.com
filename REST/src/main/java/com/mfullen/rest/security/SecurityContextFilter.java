@@ -1,4 +1,4 @@
-package com.mfullen.rest;
+package com.mfullen.rest.security;
 
 import com.mfullen.repositories.UserRepository;
 import com.mfullen.rest.services.AuthorizationService;
