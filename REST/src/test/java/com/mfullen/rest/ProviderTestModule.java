@@ -8,9 +8,9 @@ import com.google.inject.Singleton;
 import com.mfullen.repositories.BlogRepository;
 import com.mfullen.repositories.UserRepository;
 import com.mfullen.repositories.VerificationTokenRepository;
-import com.mfullen.rest.services.EmailGatewayService;
-import com.mfullen.rest.services.UserService;
-import com.mfullen.rest.services.VerificationTokenService;
+import com.mfullen.rest.services.account.UserService;
+import com.mfullen.rest.services.email.EmailGatewayService;
+import com.mfullen.rest.services.verification.VerificationTokenService;
 
 /**
  *

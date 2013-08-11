@@ -1,4 +1,4 @@
-package com.mfullen.rest.services;
+package com.mfullen.rest.services.email;
 
 /**
  *

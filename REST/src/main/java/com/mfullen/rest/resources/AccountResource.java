@@ -1,11 +1,11 @@
 package com.mfullen.rest.resources;
 
 import com.mfullen.model.Role;
+import com.mfullen.rest.authorization.AuthenticatedUserToken;
 import com.mfullen.rest.request.CreateUserRequest;
 import com.mfullen.rest.request.LoginRequest;
-import com.mfullen.rest.security.AuthenticatedUserToken;
-import com.mfullen.rest.services.UserService;
-import com.mfullen.rest.services.VerificationTokenService;
+import com.mfullen.rest.services.account.UserService;
+import com.mfullen.rest.services.verification.VerificationTokenService;
 import java.net.URI;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;

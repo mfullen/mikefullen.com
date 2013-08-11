@@ -4,7 +4,6 @@
 package com.mfullen.rest.resources;
 
 import static org.junit.Assert.*;
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 
 import com.google.inject.Module;
@@ -17,8 +16,8 @@ import com.mfullen.rest.exceptions.UserNotFoundException;
 import com.mfullen.rest.exceptions.ValidationException;
 import com.mfullen.rest.request.CreateUserRequest;
 import com.mfullen.rest.request.LoginRequest;
-import com.mfullen.rest.security.AuthenticatedUserToken;
-import com.mfullen.rest.services.UserService;
+import com.mfullen.rest.authorization.AuthenticatedUserToken;
+import com.mfullen.rest.services.account.UserService;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import java.io.IOException;

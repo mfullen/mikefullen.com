@@ -1,7 +1,7 @@
 package com.mfullen.rest.resources;
 
 import com.mfullen.rest.request.EmailVerificationRequest;
-import com.mfullen.rest.services.VerificationTokenService;
+import com.mfullen.rest.services.verification.VerificationTokenService;
 import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
 import javax.ws.rs.POST;

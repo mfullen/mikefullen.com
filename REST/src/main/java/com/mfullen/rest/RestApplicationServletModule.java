@@ -1,9 +1,9 @@
 package com.mfullen.rest;
 
-import com.mfullen.rest.security.ResourceFilterFactory;
-import com.mfullen.rest.security.SecurityContextFilter;
 import com.google.inject.Scopes;
 import com.google.inject.servlet.GuiceFilter;
+import com.mfullen.rest.authorization.ResourceFilterFactory;
+import com.mfullen.rest.authorization.SecurityContextFilter;
 import com.mfullen.rest.resources.ResourceModule;
 import com.mfullen.rest.services.ServiceModule;
 import com.sun.jersey.api.core.ResourceConfig;

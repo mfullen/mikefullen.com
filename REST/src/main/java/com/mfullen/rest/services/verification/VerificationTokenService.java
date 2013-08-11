@@ -1,4 +1,4 @@
-package com.mfullen.rest.services;
+package com.mfullen.rest.services.verification;
 
 import com.mfullen.model.VerificationToken;
 import com.mfullen.model.VerificationTokenType;

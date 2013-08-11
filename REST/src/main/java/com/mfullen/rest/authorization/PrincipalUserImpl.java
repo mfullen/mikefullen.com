@@ -1,4 +1,4 @@
-package com.mfullen.rest.security;
+package com.mfullen.rest.authorization;
 
 import com.mfullen.model.Role;
 import com.mfullen.model.UserModel;

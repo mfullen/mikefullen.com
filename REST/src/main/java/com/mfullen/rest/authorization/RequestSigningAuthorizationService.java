@@ -1,13 +1,11 @@
-package com.mfullen.rest.services;
+package com.mfullen.rest.authorization;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.mfullen.model.UserModel;
 import com.mfullen.repositories.UserRepository;
-import com.mfullen.rest.security.AuthorizationRequestContext;
-import com.mfullen.rest.security.PrincipalUser;
-import com.mfullen.rest.security.PrincipalUserImpl;
+import com.mfullen.rest.services.account.UserService;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;

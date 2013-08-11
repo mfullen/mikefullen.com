@@ -1,15 +1,17 @@
-package com.mfullen.rest.services;
+package com.mfullen.rest.services.account;
 
 import com.mfullen.model.Role;
 import com.mfullen.model.UserModel;
 import com.mfullen.model.UserRole;
 import com.mfullen.repositories.UserRepository;
+import com.mfullen.rest.authorization.AuthenticatedUserToken;
 import com.mfullen.rest.exceptions.AuthenticationException;
 import com.mfullen.rest.exceptions.DuplicateUserException;
 import com.mfullen.rest.exceptions.UserNotFoundException;
 import com.mfullen.rest.request.CreateUserRequest;
 import com.mfullen.rest.request.LoginRequest;
-import com.mfullen.rest.security.AuthenticatedUserToken;
+import com.mfullen.rest.services.AbstractService;
+import com.mfullen.rest.services.encryption.PasswordEncryptionService;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;

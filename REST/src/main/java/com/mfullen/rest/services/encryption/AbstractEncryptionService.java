@@ -1,6 +1,8 @@
-package com.mfullen.rest.services;
+package com.mfullen.rest.services.encryption;
 
+import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,7 +46,7 @@ abstract class AbstractEncryptionService implements EncryptionService
             }
             return input;
         }
-        catch (Exception ex)
+        catch (NoSuchAlgorithmException | UnsupportedEncodingException ex)
         {
             logger.error("Error getting hash");
         }

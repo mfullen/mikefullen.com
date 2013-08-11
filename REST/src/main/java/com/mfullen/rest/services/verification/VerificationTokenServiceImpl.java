@@ -1,4 +1,4 @@
-package com.mfullen.rest.services;
+package com.mfullen.rest.services.verification;
 
 import com.google.common.base.Preconditions;
 import com.mfullen.model.UserModel;
@@ -10,6 +10,9 @@ import com.mfullen.rest.exceptions.AlreadyVerifiedException;
 import com.mfullen.rest.exceptions.TokenHasExpiredException;
 import com.mfullen.rest.exceptions.TokenNotFoundException;
 import com.mfullen.rest.exceptions.UserNotFoundException;
+import com.mfullen.rest.services.HostnameUrl;
+import com.mfullen.rest.services.email.EmailGatewayService;
+import com.mfullen.rest.services.email.EmailServiceTokenModel;
 import javax.inject.Inject;
 import org.apache.commons.codec.binary.Base64;
 

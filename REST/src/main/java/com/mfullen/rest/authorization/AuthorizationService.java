@@ -1,7 +1,4 @@
-package com.mfullen.rest.services;
-
-import com.mfullen.rest.security.AuthorizationRequestContext;
-import com.mfullen.rest.security.PrincipalUser;
+package com.mfullen.rest.authorization;
 
 /**
  *

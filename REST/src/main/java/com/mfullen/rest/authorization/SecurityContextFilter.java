@@ -1,10 +1,7 @@
-package com.mfullen.rest.security;
+package com.mfullen.rest.authorization;
 
 import com.mfullen.repositories.UserRepository;
-import com.mfullen.rest.services.AuthorizationService;
-import com.mfullen.rest.services.RequestSigningAuthorizationService;
-import com.mfullen.rest.services.SessionTokenAuthorizationService;
-import com.mfullen.rest.services.UserService;
+import com.mfullen.rest.services.account.UserService;
 import com.sun.jersey.spi.container.ContainerRequest;
 import com.sun.jersey.spi.container.ContainerRequestFilter;
 import com.sun.jersey.spi.container.ContainerResponseFilter;
