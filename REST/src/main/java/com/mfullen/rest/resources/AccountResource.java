@@ -54,26 +54,10 @@ public class AccountResource extends AbstractREST
     @PermitAll
     public Response register(CreateUserRequest request)
     {
-        //UserService userService = userServiceProvider.get();
-        Response response = null;
-        try
-        {
-            AuthenticatedUserToken token = userService.register(request, Role.AUTHENTICATED);
-            verificationTokenService.sendEmailRegistrationToken(token.getUsername());
-            URI location = uriInfo.getAbsolutePathBuilder().path(token.getUserId().toString()).build();
-            response = Response.created(location).entity(token).build();
-        }
-        catch (WebApplicationException exception)
-        {
-            response = exception.getResponse();
-        }
-        finally
-        {
-            return response;
-        }
-
-        //send registration email?
-
+        AuthenticatedUserToken token = userService.register(request, Role.AUTHENTICATED);
+        verificationTokenService.sendEmailRegistrationToken(token.getUsername());
+        URI location = uriInfo.getAbsolutePathBuilder().path(token.getUserId().toString()).build();
+        return Response.created(location).entity(token).build();
     }
 
     @Path("login")
@@ -81,7 +65,6 @@ public class AccountResource extends AbstractREST
     @PermitAll
     public Response login(LoginRequest request)
     {
-        //UserService userService = userServiceProvider.get();
         AuthenticatedUserToken token = userService.login(request);
         URI location = UriBuilder.fromPath(uriInfo.getBaseUri() + "account/" + token.getUserId()).build();
         return Response.ok().entity(token).contentLocation(location).build();
