@@ -1,12 +1,13 @@
 package com.mfullen.rest.authorization;
 
+import com.google.inject.Inject;
 import com.mfullen.repositories.UserRepository;
 import com.mfullen.rest.services.account.UserService;
 import com.sun.jersey.spi.container.ContainerRequest;
 import com.sun.jersey.spi.container.ContainerRequestFilter;
 import com.sun.jersey.spi.container.ContainerResponseFilter;
 import com.sun.jersey.spi.container.ResourceFilter;
-import javax.inject.Inject;
+
 import javax.ws.rs.ext.Provider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,12 +24,13 @@ public class SecurityContextFilter implements ResourceFilter,
     protected static final String HEADER_AUTHORIZATION = "Authorization";
     protected static final String HEADER_DATE = "x-java-rest-date";
     protected static final String HEADER_NONCE = "nonce";
-    private AuthorizationService authorizationService;
+    private final AuthorizationService authorizationService;
 
     @Inject
-    public SecurityContextFilter(UserRepository userRepository, UserService userService)
+    public SecurityContextFilter(AuthorizationService authorizationService)
     {
-        delegateAuthorizationService(userRepository, userService);
+        this.authorizationService = authorizationService;
+        //delegateAuthorizationService(userRepository, userService);
     }
 
     /**
@@ -72,19 +74,18 @@ public class SecurityContextFilter implements ResourceFilter,
      * @param userService
      * @param config
      */
-    private void delegateAuthorizationService(UserRepository userRepository, UserService userService)
-    {
-        boolean requireSignedRequests = false;
-        if (requireSignedRequests)
-        {
-            this.authorizationService = new RequestSigningAuthorizationService(userRepository, userService);
-        }
-        else
-        {
-            this.authorizationService = new SessionTokenAuthorizationService(userRepository);
-        }
-    }
-
+//    private void delegateAuthorizationService(UserRepository userRepository, UserService userService)
+//    {
+//        boolean requireSignedRequests = false;
+//        if (requireSignedRequests)
+//        {
+//            this.authorizationService = new RequestSigningAuthorizationService(userRepository, userService);
+//        }
+//        else
+//        {
+//            this.authorizationService = new SessionTokenAuthorizationService(userRepository);
+//        }
+//    }
     @Override
     public ContainerRequestFilter getRequestFilter()
     {

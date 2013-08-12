@@ -17,6 +17,7 @@ import com.mfullen.rest.exceptions.ValidationException;
 import com.mfullen.rest.request.CreateUserRequest;
 import com.mfullen.rest.request.LoginRequest;
 import com.mfullen.rest.authorization.AuthenticatedUserToken;
+import com.mfullen.rest.authorization.AuthorizationModule;
 import com.mfullen.rest.services.account.UserService;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
@@ -154,6 +155,7 @@ public class AccountResourceTest extends BaseResourceTest
     {
         final List<Module> modules = new ArrayList<>();
         modules.add(new ProviderTestModule());
+        modules.add(new AuthorizationModule());
         return modules;
     }
 }

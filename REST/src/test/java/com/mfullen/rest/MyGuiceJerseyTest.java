@@ -9,8 +9,10 @@ import com.google.inject.persist.jpa.JpaPersistModule;
 import com.google.inject.servlet.GuiceFilter;
 import com.google.inject.servlet.GuiceServletContextListener;
 import com.google.inject.servlet.ServletModule;
+import com.mfullen.rest.authorization.AuthorizationService;
 import com.mfullen.rest.authorization.ResourceFilterFactory;
 import com.mfullen.rest.authorization.SecurityContextFilter;
+import com.mfullen.rest.authorization.SessionTokenAuthorizationService;
 import com.sun.jersey.api.core.ResourceConfig;
 import com.sun.jersey.api.json.JSONConfiguration;
 import com.sun.jersey.guice.spi.container.servlet.GuiceContainer;
@@ -90,7 +92,8 @@ public abstract class MyGuiceJerseyTest extends JerseyTest
 
             bind(JacksonJsonProvider.class).in(Scopes.SINGLETON);
 //            bind(ContainerRequestFilter.class).to(SecurityContextFilter.class).in(Scopes.SINGLETON);
-//            bind(ResourceFilter.class).to(SecurityContextFilter.class).in(Scopes.SINGLETON);
+            //bind(AuthorizationService.class).to(SessionTokenAuthorizationService.class);
+            //bind(ResourceFilter.class).to(SecurityContextFilter.class).in(Scopes.SINGLETON);
 //            bind(com.sun.jersey.spi.container.ResourceFilterFactory.class).to(ResourceFilterFactory.class).in(Scopes.SINGLETON);
 
             final Map<String, String> params = new HashMap<>();

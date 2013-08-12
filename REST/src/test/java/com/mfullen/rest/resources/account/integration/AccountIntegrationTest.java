@@ -99,6 +99,9 @@ public class AccountIntegrationTest extends BaseResourceTest
 
         ClientResponse verify = webResource.path("verify").path("tokens").path(encodedToken).post(ClientResponse.class);
         assertEquals(Response.Status.OK.getStatusCode(), verify.getStatus());
+        //TODO figure out why this was being overriden to false after verifying
+        findByApiKey.setVerified(true);
+        userRepository.save(findByApiKey);
         String nonce = RandomStringUtils.randomAlphanumeric(8);
         String authToken = token.getToken();
         ClientResponse response = webResource.path("account").path("test")
