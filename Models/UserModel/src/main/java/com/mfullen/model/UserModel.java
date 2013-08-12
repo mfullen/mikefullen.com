@@ -33,6 +33,7 @@ public class UserModel extends AbstractModel
     {
         CascadeType.PERSIST, CascadeType.REMOVE
     })
+    @LazyCollection(LazyCollectionOption.FALSE)
     private Set<UserRole> roles = new HashSet<>();
     @OneToMany(mappedBy = "user",
                targetEntity = VerificationToken.class,

@@ -2,6 +2,7 @@ package com.mfullen.rest.authorization;
 
 import com.mfullen.model.UserModel;
 import com.mfullen.repositories.UserRepository;
+import com.mfullen.rest.exceptions.AuthorizationException;
 
 /**
  *
@@ -33,7 +34,7 @@ public class SessionTokenAuthorizationService implements AuthorizationService
         final UserModel user = userRepository.findByApiKey(token);
         if (user == null)
         {
-            throw new NullPointerException("Session token not valid");
+            throw new AuthorizationException("Session token not valid");
         }
 
         // sessionToken.setLastUpdated(new Date());

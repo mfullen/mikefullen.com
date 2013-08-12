@@ -2,6 +2,7 @@ package com.mfullen.rest;
 
 import com.google.inject.Scopes;
 import com.google.inject.servlet.GuiceFilter;
+import com.mfullen.rest.authorization.AuthorizationModule;
 import com.mfullen.rest.authorization.ResourceFilterFactory;
 import com.mfullen.rest.authorization.SecurityContextFilter;
 import com.mfullen.rest.resources.ResourceModule;
@@ -33,13 +34,10 @@ public class RestApplicationServletModule extends JerseyServletModule
         install(new ServiceModule());
         install(new ResourceModule());
         install(new ValidationModule());
+        install(new AuthorizationModule());
 
         bind(GuiceContainer.class);
         bind(GuiceFilter.class);
-        bind(ContainerRequestFilter.class).to(SecurityContextFilter.class).in(Scopes.SINGLETON);
-        bind(ResourceFilter.class).to(SecurityContextFilter.class).in(Scopes.SINGLETON);
-        bind(com.sun.jersey.spi.container.ResourceFilterFactory.class).to(ResourceFilterFactory.class).in(Scopes.SINGLETON);
-
 
         bind(JacksonJsonProvider.class).in(Scopes.SINGLETON);
 

@@ -120,7 +120,7 @@ public class RequestSigningAuthorizationService implements AuthorizationService
             String[] token = context.getAuthorizationToken().split(":");
             if (token.length == 2)
             {
-                Long userId = Long.getLong(token[0]);
+                Long userId = Long.parseLong(token[0]);
                 String hashedToken = token[1];
                 //make sure date and nonce is valid
                 validateRequestDate(context.getRequestDateString());

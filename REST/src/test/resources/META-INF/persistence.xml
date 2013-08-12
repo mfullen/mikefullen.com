@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-  <persistence-unit name="test" transaction-type="RESOURCE_LOCAL">
+  <persistence-unit name="rest_test">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
-    <non-jta-data-source/>
     <class>com.mfullen.model.Blog</class>
     <class>com.mfullen.model.Comment</class>
     <class>com.mfullen.model.Post</class>
     <class>com.mfullen.model.UserModel</class>
     <class>com.mfullen.model.UserRole</class>
-    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <class>com.mfullen.model.VerificationToken</class>
     <properties>
       <property name="hibernate.archive.autodetection" value="class, hbm"/>
       <property name="hibernate.connection.url" value="jdbc:derby:memory:jpa;create=true"/>
@@ -18,6 +17,7 @@
       <property name="hibernate.connection.username" value=""/>
       <property name="hibernate.connection.password" value=""/>
       <property name="hibernate.show_sql" value="true"/>
+      <property name="hibernate.enable_lazy_load_no_trans" value="true"/>
     </properties>
   </persistence-unit>
 </persistence>

@@ -21,7 +21,8 @@ abstract class AbstractEncryptionService implements EncryptionService
     public String hashToken(String token, String salt)
     {
         byte[] hash = getHash(token, salt.getBytes());
-        return new Base64(true).encodeToString(hash);
+        String hashedToken = new Base64(true).encodeToString(hash);
+        return hashedToken.replaceAll("\n", "").replaceAll("\r", "");
     }
 
     @Override

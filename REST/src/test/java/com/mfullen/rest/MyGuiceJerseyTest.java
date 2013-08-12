@@ -4,6 +4,8 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
 import com.google.inject.Scopes;
+import com.google.inject.persist.PersistFilter;
+import com.google.inject.persist.jpa.JpaPersistModule;
 import com.google.inject.servlet.GuiceFilter;
 import com.google.inject.servlet.GuiceServletContextListener;
 import com.google.inject.servlet.ServletModule;
@@ -90,6 +92,7 @@ public abstract class MyGuiceJerseyTest extends JerseyTest
             bind(ContainerRequestFilter.class).to(SecurityContextFilter.class).in(Scopes.SINGLETON);
             bind(ResourceFilter.class).to(SecurityContextFilter.class).in(Scopes.SINGLETON);
             bind(com.sun.jersey.spi.container.ResourceFilterFactory.class).to(ResourceFilterFactory.class).in(Scopes.SINGLETON);
+
             final Map<String, String> params = new HashMap<>();
             params.put(JSONConfiguration.FEATURE_POJO_MAPPING, "true");
             //params.put(CONFIG_PROPERTY_PACKAGES, REST_RESOURCES);

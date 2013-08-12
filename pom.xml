@@ -11,5 +11,6 @@
         <module>DataAccess</module>
         <module>REST</module>
         <module>MfullenWeb</module>
-    </modules>
+    <module>RESTIntegration</module>
+  </modules>
 </project>
