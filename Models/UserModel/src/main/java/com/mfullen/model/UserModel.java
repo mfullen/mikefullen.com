@@ -1,5 +1,6 @@
 package com.mfullen.model;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -26,7 +27,9 @@ public class UserModel extends AbstractModel
     @Column(unique = true)
     private String email;
     private String password;
+    @Column(name = "verified")
     private boolean verified;
+    private Timestamp lastLogin;
     @Column(unique = true)
     private String apiKey;
     @OneToMany(mappedBy = "user", cascade =
@@ -109,6 +112,16 @@ public class UserModel extends AbstractModel
     public void setApiKey(String apiKey)
     {
         this.apiKey = apiKey;
+    }
+
+    public void setLastLogin(Timestamp lastLogin)
+    {
+        this.lastLogin = lastLogin;
+    }
+
+    public Timestamp getLastLogin()
+    {
+        return lastLogin;
     }
 
     public Set<UserRole> getRoles()

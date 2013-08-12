@@ -10,4 +10,6 @@ import java.util.Collection;
 public interface PrincipalUser extends Principal
 {
     Collection<String> getRoles();
+
+    boolean isVerified();
 }

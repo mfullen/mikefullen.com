@@ -89,9 +89,9 @@ public abstract class MyGuiceJerseyTest extends JerseyTest
             }
 
             bind(JacksonJsonProvider.class).in(Scopes.SINGLETON);
-            bind(ContainerRequestFilter.class).to(SecurityContextFilter.class).in(Scopes.SINGLETON);
-            bind(ResourceFilter.class).to(SecurityContextFilter.class).in(Scopes.SINGLETON);
-            bind(com.sun.jersey.spi.container.ResourceFilterFactory.class).to(ResourceFilterFactory.class).in(Scopes.SINGLETON);
+//            bind(ContainerRequestFilter.class).to(SecurityContextFilter.class).in(Scopes.SINGLETON);
+//            bind(ResourceFilter.class).to(SecurityContextFilter.class).in(Scopes.SINGLETON);
+//            bind(com.sun.jersey.spi.container.ResourceFilterFactory.class).to(ResourceFilterFactory.class).in(Scopes.SINGLETON);
 
             final Map<String, String> params = new HashMap<>();
             params.put(JSONConfiguration.FEATURE_POJO_MAPPING, "true");

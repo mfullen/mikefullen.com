@@ -1,6 +1,7 @@
 package com.mfullen.rest.services.verification;
 
 import com.google.common.base.Preconditions;
+import com.google.inject.persist.Transactional;
 import com.mfullen.model.UserModel;
 import com.mfullen.model.VerificationToken;
 import com.mfullen.model.VerificationTokenType;
@@ -22,7 +23,7 @@ import org.apache.commons.codec.binary.Base64;
  */
 class VerificationTokenServiceImpl implements VerificationTokenService
 {
-    public static final int EmailVerificationTokenExpiryTimeInMinutes = 24;
+    public static final int EmailVerificationTokenExpiryTimeInMinutes = 24 * 60;
     private final UserRepository userRepository;
     private final VerificationTokenRepository tokenRepository;
     private final EmailGatewayService emailGatewayService;
@@ -108,15 +109,17 @@ class VerificationTokenServiceImpl implements VerificationTokenService
     }
 
     @Override
+    @Transactional
     public VerificationToken verify(String base64EncodedToken)
     {
         VerificationToken token = loadToken(base64EncodedToken);
-        if (token.isVerified() || token.getUser().isVerified())
+        if (token.isVerified() || (token.getUser().isVerified()))
         {
             throw new AlreadyVerifiedException();
         }
         token.setVerified(true);
         token.getUser().setVerified(true);
+        //tokenRepository.save(token);
         userRepository.save(token.getUser());
         return token;
     }

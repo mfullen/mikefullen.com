@@ -14,8 +14,8 @@ public class AuthorizationModule extends AbstractModule
     @Override
     protected void configure()
     {
-        bind(ContainerRequestFilter.class).to(SecurityContextFilter.class).in(Scopes.SINGLETON);
-        bind(ResourceFilter.class).to(SecurityContextFilter.class).in(Scopes.SINGLETON);
+        bind(ContainerRequestFilter.class).to(SecurityContextFilter.class);//.in(Scopes.SINGLETON);
+        bind(ResourceFilter.class).to(SecurityContextFilter.class);//.in(Scopes.SINGLETON);
         bind(com.sun.jersey.spi.container.ResourceFilterFactory.class).to(ResourceFilterFactory.class).in(Scopes.SINGLETON);
     }
 }

@@ -36,14 +36,18 @@ class SecurityContextImpl implements SecurityContext
         {
             return false;
         }
-        //look through the users roles and see if it matches the role being checked
-        for (String userRole : externalUser.getRoles())
+        //only look for roles if the user has verified their account
+        if (externalUser.isVerified())
         {
-            for (Role roll : Role.values())
+            //look through the users roles and see if it matches the role being checked
+            for (String userRole : externalUser.getRoles())
             {
-                if (roll.name().equalsIgnoreCase(userRole))
+                for (Role roll : Role.values())
                 {
-                    return true;
+                    if (roll.name().equalsIgnoreCase(userRole))
+                    {
+                        return true;
+                    }
                 }
             }
         }

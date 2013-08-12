@@ -1,6 +1,7 @@
 package com.mfullen.rest.resources;
 
 import com.google.inject.AbstractModule;
+import com.google.inject.servlet.ServletScopes;
 import com.mfullen.repositories.BlogRepository;
 import com.mfullen.repositories.UserRepository;
 import com.mfullen.repositories.VerificationTokenRepository;
@@ -29,7 +30,7 @@ public class ResourceModule extends AbstractModule
     {
         bind(IMappingService.class).to(RestMapper.class);
         bind(BlogRepository.class).to(JpaBlogRepository.class);
-        bind(UserRepository.class).to(JpaUserRepository.class);
+        bind(UserRepository.class).to(JpaUserRepository.class);//.in(ServletScopes.SESSION);
         bind(VerificationTokenRepository.class).to(JpaVerificationTokenRepository.class);
 
 

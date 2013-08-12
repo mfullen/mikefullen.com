@@ -1,27 +1,29 @@
 package com.mfullen.rest.resources.account.integration;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
 
 import com.google.inject.AbstractModule;
+import com.google.inject.Inject;
 import com.google.inject.Module;
-import com.google.inject.Provides;
-import com.google.inject.Singleton;
 import com.google.inject.persist.PersistFilter;
 import com.google.inject.persist.jpa.JpaPersistModule;
 import com.google.inject.servlet.ServletModule;
+import com.mfullen.model.UserModel;
+import com.mfullen.model.VerificationToken;
+import com.mfullen.repositories.UserRepository;
 import com.mfullen.rest.BaseResourceTest;
-import com.mfullen.rest.PersistenceInit;
 import com.mfullen.rest.authorization.AuthenticatedUserToken;
 import com.mfullen.rest.authorization.AuthorizationModule;
 import com.mfullen.rest.request.CreateUserRequest;
 import com.mfullen.rest.resources.AccountResource;
 import com.mfullen.rest.resources.ResourceModule;
+import com.mfullen.rest.resources.VerificationResource;
 import com.mfullen.rest.services.ServiceModule;
 import com.mfullen.rest.services.email.EmailGatewayService;
+import com.mfullen.rest.services.email.MailServiceModule;
+import com.mfullen.rest.services.email.MockEmailGatewayServiceImpl;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.core.MediaType;
@@ -44,10 +46,14 @@ import org.junit.Test;
  */
 public class AccountIntegrationTest extends BaseResourceTest
 {
+
+    private UserRepository userRepository;
+
     @Before
     public void setup() throws Exception
     {
         super.setUp();
+        userRepository = injector.getInstance(UserRepository.class);
     }
 
     @After
@@ -87,6 +93,12 @@ public class AccountIntegrationTest extends BaseResourceTest
         String currentDate = ISO8061_FORMATTER.print(new DateTime());
         AuthenticatedUserToken token = registerUser();
         WebResource webResource = resource();
+        UserModel findByApiKey = userRepository.findByApiKey(token.getToken());
+        VerificationToken verificationToken = findByApiKey.getVerificationTokens().get(0);
+        String encodedToken = new String(Base64.encodeBase64(verificationToken.getToken().getBytes()));
+
+        ClientResponse verify = webResource.path("verify").path("tokens").path(encodedToken).post(ClientResponse.class);
+        assertEquals(Response.Status.OK.getStatusCode(), verify.getStatus());
         String nonce = RandomStringUtils.randomAlphanumeric(8);
         String authToken = token.getToken();
         ClientResponse response = webResource.path("account").path("test")
@@ -107,7 +119,7 @@ public class AccountIntegrationTest extends BaseResourceTest
     public AuthenticatedUserToken registerUser()
     {
         CreateUserRequest request = new CreateUserRequest();
-        request.setEmail("joker@aol.com");
+        request.setEmail("mike@mikefullen.com");
         request.setPassword("hunter2");
         request.setUsername("TheJoker");
         WebResource webResource = resource();
@@ -127,6 +139,7 @@ public class AccountIntegrationTest extends BaseResourceTest
     {
         final List<Class> classes = new ArrayList<>();
         classes.add(AccountResource.class);
+        classes.add(VerificationResource.class);
         return classes;
     }
 
@@ -136,13 +149,6 @@ public class AccountIntegrationTest extends BaseResourceTest
         final List<Module> modules = new ArrayList<>();
         modules.add(new AbstractModule()
         {
-            @Provides
-            @Singleton
-            EmailGatewayService providerMockEmailGatewayService()
-            {
-                return mock(EmailGatewayService.class);
-            }
-
             @Override
             protected void configure()
             {
@@ -150,7 +156,8 @@ public class AccountIntegrationTest extends BaseResourceTest
                 install(new AuthorizationModule());
                 install(new ServiceModule());
                 install(new ValidationModule());
-
+                install(new MailServiceModule());
+                bind(EmailGatewayService.class).to(MockEmailGatewayServiceImpl.class);
             }
         });
 

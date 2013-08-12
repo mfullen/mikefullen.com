@@ -13,21 +13,21 @@ import java.util.List;
 public class JpaUserRepository extends AbstractJpaRepository<UserModel> implements
         UserRepository
 {
-    @Transactional
+    //@Transactional
     public UserModel findByEmail(String email)
     {
         List<UserModel> findByField = this.findByField(UserModel_.email, email);
         return getSingle(findByField);
     }
 
-    @Transactional
+    //@Transactional
     public UserModel findByUserName(String username)
     {
         List<UserModel> findByField = this.findByField(UserModel_.userName, username);
         return getSingle(findByField);
     }
 
-    @Transactional
+    //@Transactional
     public UserModel findByApiKey(String apikey)
     {
         List<UserModel> findByField = this.findByField(UserModel_.apiKey, apikey);

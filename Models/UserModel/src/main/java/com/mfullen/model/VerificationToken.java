@@ -31,15 +31,13 @@ public class VerificationToken extends AbstractModel
 
     public VerificationToken()
     {
-        super();
-        this.token = UUID.randomUUID().toString();
-        this.expiryDate = calculateExpiryDate(DEFAULT_EXPIRY_TIME_IN_MINS);
+       this(null, VerificationTokenType.emailRegistration, DEFAULT_EXPIRY_TIME_IN_MINS);
     }
 
     public VerificationToken(UserModel user, VerificationTokenType tokenType, int expirationTimeInMinutes)
     {
-        this();
         this.user = user;
+        this.token = UUID.randomUUID().toString();
         this.tokenType = tokenType;
         this.expiryDate = calculateExpiryDate(expirationTimeInMinutes);
     }
@@ -88,6 +86,6 @@ public class VerificationToken extends AbstractModel
     public boolean hasExpired()
     {
         //expired if Now > expiry date
-        return getExpiryDate().after(new Timestamp(System.currentTimeMillis()));
+        return !getExpiryDate().after(new Timestamp(System.currentTimeMillis()));
     }
 }

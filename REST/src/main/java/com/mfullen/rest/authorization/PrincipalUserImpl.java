@@ -34,4 +34,10 @@ public class PrincipalUserImpl implements PrincipalUser
     {
         return user.getUserName();
     }
+
+    @Override
+    public boolean isVerified()
+    {
+        return user.isVerified();
+    }
 }

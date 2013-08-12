@@ -1,8 +1,10 @@
 package com.mfullen.rest.authorization;
 
+import com.google.inject.Inject;
 import com.mfullen.model.UserModel;
 import com.mfullen.repositories.UserRepository;
 import com.mfullen.rest.exceptions.AuthorizationException;
+import java.sql.Timestamp;
 
 /**
  *
@@ -17,6 +19,7 @@ public class SessionTokenAuthorizationService implements AuthorizationService
      */
     private final UserRepository userRepository;
 
+    @Inject
     public SessionTokenAuthorizationService(UserRepository repository)
     {
         this.userRepository = repository;
@@ -37,11 +40,11 @@ public class SessionTokenAuthorizationService implements AuthorizationService
             throw new AuthorizationException("Session token not valid");
         }
 
+        user.setLastLogin(new Timestamp(System.currentTimeMillis()));
         // sessionToken.setLastUpdated(new Date());
         //set last login date.
         userRepository.save(user);
         externalUser = new PrincipalUserImpl(user);
-
 
         return externalUser;
     }
