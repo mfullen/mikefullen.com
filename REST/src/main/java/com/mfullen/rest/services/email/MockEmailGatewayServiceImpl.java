@@ -1,5 +1,7 @@
 package com.mfullen.rest.services.email;
 
+import com.mfullen.rest.services.email.EmailGatewayService;
+import com.mfullen.rest.services.email.EmailServiceTokenModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

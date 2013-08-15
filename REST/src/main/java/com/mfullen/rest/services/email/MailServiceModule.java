@@ -12,5 +12,6 @@ public class MailServiceModule extends AbstractModule
     protected void configure()
     {
         bind(MailService.class).to(MailServiceImpl.class);
+        bind(EmailGatewayService.class).to(MockEmailGatewayServiceImpl.class);
     }
 }

@@ -15,7 +15,7 @@ public class MainServletConfig extends GuiceServletContextListener
     protected Injector getInjector()
     {
         Injector injector = Guice.createInjector(new JpaPersistModule("production"),new MfullenModule());
-        injector.getInstance(AppInitializer.class);
+        //injector.getInstance(AppInitializer.class);
         return injector;
     }
 }

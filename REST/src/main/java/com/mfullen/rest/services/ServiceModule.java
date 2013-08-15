@@ -2,6 +2,7 @@ package com.mfullen.rest.services;
 
 import com.google.inject.AbstractModule;
 import com.mfullen.rest.services.account.AccountModule;
+import com.mfullen.rest.services.email.MailServiceModule;
 import com.mfullen.rest.services.encryption.EncryptionModule;
 import com.mfullen.rest.services.verification.VerificationModule;
 
@@ -18,5 +19,6 @@ public class ServiceModule extends AbstractModule
         install(new AccountModule());
         install(new EncryptionModule());
         install(new VerificationModule());
+        install(new MailServiceModule());
     }
 }

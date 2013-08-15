@@ -17,7 +17,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 public class HomePage extends WebPage
 {
     private static final long serialVersionUID = 1L;
-    @Inject
+    //@Inject
     private UserRepository userRepository;
 
     public void setUserRepository(UserRepository userRepository)
@@ -32,9 +32,9 @@ public class HomePage extends WebPage
 
         //add(new Label("version", getApplication().getFrameworkSettings().getVersion()));
         // TODO Add your page's components here
-        String name = "NONE";
-        name = getUserName(name);
-        add(new Label("version", name));
+        String name = "Software Engineering";
+        //name = getUserName(name);
+        //add(new Label("version", name));
 
         Form form = new Form("form")
         {
@@ -87,7 +87,7 @@ public class HomePage extends WebPage
         form.add(button1);
 
 
-        add(form);
+        //add(form);
 
     }
 

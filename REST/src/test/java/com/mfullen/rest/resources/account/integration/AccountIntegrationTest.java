@@ -160,7 +160,6 @@ public class AccountIntegrationTest extends BaseResourceTest
                 install(new ServiceModule());
                 install(new ValidationModule());
                 install(new MailServiceModule());
-                bind(EmailGatewayService.class).to(MockEmailGatewayServiceImpl.class);
             }
         });
 

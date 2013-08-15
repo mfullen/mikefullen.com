@@ -26,11 +26,11 @@ public class TestHomePage
 
         Injector injector = Guice.createInjector(new ServletModule()
         {
-            @Provides
-            public EmailGatewayService mockEmailGatewayServiceProvider()
-            {
-                return Mockito.mock(EmailGatewayService.class);
-            }
+//            @Provides
+//            public EmailGatewayService mockEmailGatewayServiceProvider()
+//            {
+//                return Mockito.mock(EmailGatewayService.class);
+//            }
 
             @Override
             protected void configureServlets()
@@ -39,7 +39,7 @@ public class TestHomePage
                 install(new JpaPersistModule("test"));
             }
         });
-        injector.getInstance(PersistService.class).start();
+        //injector.getInstance(PersistService.class).start();
         tester = new WicketTester(injector.getInstance(WebApplication.class));
     }
 
