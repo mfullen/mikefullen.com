@@ -10,15 +10,16 @@ define(['durandal/system', 'durandal/plugins/router', 'config'],
         var deactivate = function () {
         };
 
-        var message = "Mike is a Software Engineer who is interested in many computer topics including: Java, Javascript, C#, MVC, Game Design and more";
-
+        var message = "Please view my LinkedIn Resume";
+        var linkedInUrl = "http://www.linkedin.com/in/mikefullen";
         //#endregion
 
         var vm = {
             activate: activate,
             deactivate: deactivate,
-            title: 'About Me',
-            message: message
+            title: 'Resume',
+            message: message,
+            linkedinUrl: linkedInUrl
         };
 
         return vm;
