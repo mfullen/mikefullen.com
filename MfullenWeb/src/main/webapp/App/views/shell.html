@@ -8,18 +8,18 @@
     <div class="bd">
 
 
-<!--                <a class="brand" data-bind="attr: { href: router.visibleRoutes()[0].hash }">
-                    <i class="icon-home"></i>
-                    <span>Home</span>
-                </a>-->
-                <ul class="nav nav-tabs" data-bind="foreach: router.visibleRoutes">
-                    <li data-bind="css: { active: isActive }">
-                        <a data-bind="attr: { href: hash }, html: name"></a>
-                    </li>
-                </ul>
-                <div class="loader pull-right" data-bind="css: { active: router.isNavigating }">
-                    <i class="icon-spinner icon-2x icon-spin"></i>
-                </div>
+        <!--                <a class="brand" data-bind="attr: { href: router.visibleRoutes()[0].hash }">
+                            <i class="icon-home"></i>
+                            <span>Home</span>
+                        </a>-->
+        <ul class="nav nav-tabs" data-bind="foreach: router.visibleRoutes">
+            <li data-bind="css: { active: isActive }">
+                <a data-bind="attr: { href: hash }, html: name"></a>
+            </li>
+        </ul>
+        <div class="loader pull-right" data-bind="css: { active: router.isNavigating }">
+            <i class="icon-spinner icon-2x icon-spin"></i>
+        </div>
 
 
 
@@ -30,6 +30,11 @@
                  cacheViews:true //telling composition to keep views in the dom, and reuse them (only a good idea with singleton view models)
              }--><!--/ko-->
     </div>
-    <div class="ft">
-    </div>
+    <!--    <div class="ft">
+        </div>-->
+<!--    <footer class="ft">
+        <a href="https://github.com/mfullen">GitHub</a>
+        <a href="http://linkedin.com/in/mikefullen">LinkedIn</a>
+
+    </footer>-->
 </section>
