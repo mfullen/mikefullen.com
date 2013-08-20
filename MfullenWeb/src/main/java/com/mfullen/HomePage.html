@@ -1,50 +1,379 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <title>Durandal</title>
+        <meta charset="utf-8">
+        <title>Mike Fullen CV</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-        <meta name="format-detection" content="telephone=no"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-        <link rel="apple-touch-startup-image" href="Content/images/ios-startup-image-landscape.png" media="(orientation:landscape)" />
-        <link rel="apple-touch-startup-image" href="Content/images/ios-startup-image-portrait.png" media="(orientation:portrait)" />
-        <link rel="apple-touch-icon" href="Content/images/icon.png"/>
-
-        <link rel="stylesheet" href="style.css" />
         <link rel="stylesheet" href="Content/bootstrap.min.css" />
-        <link rel="stylesheet" href="Content/bootstrap-responsive.min.css" />
-        <link rel="stylesheet" href="Content/font-awesome.css" />
-        <link rel="stylesheet" href="Content/ie10mobile.css" />
-        <link rel="stylesheet" href="Content/durandal.css" />
-        <link rel="stylesheet" href="Content/app.css" />
-
-        <script type="text/javascript">
-            if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
-                var msViewportStyle = document.createElement("style");
-                var mq = "@@-ms-viewport{width:auto!important}";
-                msViewportStyle.appendChild(document.createTextNode(mq));
-                document.getElementsByTagName("head")[0].appendChild(msViewportStyle);
-            }
-        </script>
+        <link href="Content/cv.css" rel="stylesheet">
+<!--        <link rel="stylesheet" href="Content/bootstrap-responsive.min.css" />-->
     </head>
     <body>
-        <div id="applicationHost">
-            <div class="splash">
-                <div class="message">
-                    Loading MikeFullen.com!
-                </div>
-                <i class="icon-spinner icon-2x icon-spin active"></i>
-            </div>
-        </div>
 
+        <div class="platform">
+
+            <div class="header">
+
+                <div class="row">
+
+                    <div class="span">
+                        <img src="http://www.gravatar.com/avatar/d1cb63696bf7091f2df6824ffe2aaf40.png" class="img-polaroid">
+                    </div>
+                    <!--/photo-->
+
+                    <div class="span margin-bottom-5">
+                        <div class="name-text">Mike Fullen</div>
+                        <div class="major-text"><i>Software Engineer 2</i></div>
+                    </div>
+                    <!--/name-->
+
+                    <div class="span pull-right">
+                        <div class="span">
+                            <address class="margin-bottom-5">
+<!--                                P.O. Box 12<br>
+                                123 Bingo St<br>-->
+                                Melbourne, Florida 32955
+                            </address>
+<!--                            <abbr rel="tooltip" data-original-title="Phone">P:</abbr>&nbsp;&nbsp;+07765626195<br>-->
+                            <abbr rel="tooltip" data-original-title="Email">E:</abbr>&nbsp;&nbsp;<a href="mailto:mike@mikefullen.com">mike@mikefullen.com</a><br>
+                            <abbr rel="tooltip" data-original-title="Website">W:</abbr>&nbsp;<a href="http://mikefullen.com" target="_blank">mikefullen.com</a><br>
+                            <div class="margin-top-5 margin-bottom-5">
+                                <a href="http://www.linkedin.com/in/mikefullen" target="_blank" rel="tooltip" data-original-title="LinkedIn">
+                                    <img src="Content/images/linkedin.png" alt="LinkedIn" width="20"/>
+                                </a>&nbsp;
+                                <a href="http://github.com/mfullen" target="_blank" rel="tooltip" data-original-title="Github">
+                                    <img src="Content/images/GitHub-Mark-32px.png" alt="GitHub" width="20"/>
+
+                                </a>&nbsp;
+<!--                                <a href="#" rel="tooltip" data-original-title="Twitter">
+                                    <img src="Content/images/twitter.png" alt="Twitter" width="20"/>
+                                </a>&nbsp;
+                                <a href="#" rel="tooltip" data-original-title="Facebook">
+                                    <img src="Content/images/facebook.png" alt="Facebook" width="20"/>
+                                </a>&nbsp;
+                                <a href="#" rel="tooltip" data-original-title="Google Plus">
+                                    <img src="Content/images/googleplus.png" alt="Google Plus" width="20"/>
+                                </a>-->
+                            </div>
+                        </div>
+<!--                        <div class="span">
+                            <img src="Content/images/qrcode.jpg" width="75" rel="tooltip" data-original-title="Save my vCard">
+                        </div>
+
+                        <a class="pdf" href="cv.pdf" target="_blank" rel="tooltip" data-original-title="Download as PDF"></a>-->
+
+                    </div>
+                    <!--/contacts-->
+
+                </div>
+
+            </div><!-- /header -->
+
+
+            <div class="main">
+
+<!--                <div class="row">
+                    <div class="span section-title">
+                        Objective
+                    </div>
+                    <div class="span section-body">
+                        Challenging career opportunities, which would help me to utilize my academic background, that assist me to gain experience, employ my excellent interpersonal skills, and enable me to make a positive contribution.
+                    </div>
+                </div>-->
+                <!-- /objective-->
+
+<!--                <div class="seperator"></div>-->
+
+                <div class="row">
+                    <div class="span section-title">
+                        Work Experience
+                    </div>
+
+                    <div class="span section-body">
+
+                        <div class="clearfix">
+                            <div class="row">
+                                <div class="span">
+                                    <div class="item-name">Harris Corporation : Melbourne, Florida</div>
+                                    <div class="item-desc">Software Engineer II</div>
+                                </div>
+                                <div class="item-period pull-right span">August 2011 - Present</div>
+                            </div>
+                            <div class="margin-top-10">
+                                <ul>
+                                    <li>Developed Embedded Java Middleware</li>
+                                    <li>Led Small team to add features to a Next Generation Product</li>
+                                    <li>Java/MVC/Maven/Web Technology technical leader</li>
+                                    <li>Added Bluetooth support to embedded software.</li>
+                                    <li>Developed Java Swing Desktop Application</li>
+                                    <li>Interfacing with hardware through Serial/USB</li>
+                                    <li>Maven and Jenkins Integration</li>
+                                    <li>Participated in peer reviews of code and design content. </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="inner-seperator"></div>
+
+                        <div class="clearfix">
+                            <div class="row">
+                                <div class="span">
+                                    <div class="item-name">Carley Corporation : Orlando, Florida</div>
+                                    <div class="item-desc">Lead Software Engineer</div>
+                                </div>
+                                <div class="item-period pull-right span">June 2011 - August 2011</div>
+                            </div>
+                            <div class="margin-top-10">
+                                <ul>
+                                    <li>Lead Software Engineer for the E2D HITS-M Maintenance Trainer.</li>
+                                    <li>Responsible for the day to day technical decisions and team lead.</li>
+                                    <li>Managed Software Life Cycle, including Requirements, Design, CUT, Configuration Management and Test</li>
+                                    <li>Developed Java code to interact with GLStudio to produce 3D scenes and interactions</li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                         <div class="inner-seperator"></div>
+
+                        <div class="clearfix">
+                            <div class="row">
+                                <div class="span">
+                                    <div class="item-name">Carley Corporation : Orlando, Florida</div>
+                                    <div class="item-desc">Software Engineer</div>
+                                </div>
+                                <div class="item-period pull-right span">May 2009 - June 2011</div>
+                            </div>
+                            <div class="margin-top-10">
+                                <ul>
+                                    <li>Created C# WinForms front-end to track components of the E2D system in a SQL server 2008 database for the entire team.</li>
+                                    <li>Used UML to aide in the design of the overall architecture of the simulation.</li>
+                                    <li>Developed TCP networking library in Java.</li>
+                                    <li>Designed and Developed Instructor Station software which acts as a Server.</li>
+                                    <li>Designed and Developed Student Station software which acts as a Client.</li>
+                                    <li>Team based development of the simulation and fault engine.</li>
+                                    <li>Used GLStudio to create/manipulate 2D/3D objects at runtime.</li>
+                                    <li>Worked with senior software engineer to develop multiple PC/Task simulations.</li>
+                                    <li>Used Dragon Naturally speaking API to filter voice into computer readable commands.</li>
+                                    <li>Wrote code to link together multiple applications to provide a networked simulation (over UDP) up to four students and one instructor at a time.</li>
+                                    <li>Developed C++ code to interface with the Vega Prime API to provide radar capabilities.</li>
+                                    <li>Maintained C++ code which interfaced STAGE, FlightSim and VAPS XT.</li>
+                                    <li>Developed tool in C# for configuring the multiple simulations through XML.</li>
+                                    <li>Developed custom plugins for VAPS XT for the cockpit GUI. (minimap, textbox, tickers, etc..)</li>
+                                    <li>Performed role as lead tester for all simulations.</li>
+                                    <li>Responsible for the C# simulation controller/engine which provided logging actions, scoring, and filtering of commands.</li>
+                                    <li>Created/maintained SQL server 2008 databases.</li>
+                                    <li>Interfaced websites and database with Entity Framework.</li>
+                                    <li>Developed ASP.NET MVC site for IT department for them to be able to maintain users and projects in their content management system.</li>
+                                    <li>Developed ASP.NET MVC site for Project managers which allowed them to automate website hosting.</li>
+                                    <li>Developed plugins / features in C# for the in-house Content Management System, CCS.</li>
+                                    <li>Researched different technologies such as Silverlight and WPF.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                          <div class="inner-seperator"></div>
+
+                        <div class="clearfix">
+                            <div class="row">
+                                <div class="span">
+                                    <div class="item-name">Accounting Systems Technology : Casselberry, Florida</div>
+                                    <div class="item-desc">Programmer</div>
+                                </div>
+                                <div class="item-period pull-right span">February 2008 - April 2009</div>
+                            </div>
+                            <div class="margin-top-10">
+                                <ul>
+                                    <li>Responsibilities included fixing bugs in the Visions Software, and assisting customers.</li>
+                                    <li>Used Visual Basic .NET to create a package key system for demo software.</li>
+                                    <li>Refactored old code.</li>
+                                    <li>Created and maintained databases in Microsoft Access 97-2003 and SQL server 2005.</li>
+                                    <li>Improved installation features and packaging for the Visions software.</li>
+                                    <li>Developed in-house customer service database.</li>
+                                    <li>Worked with a team to brainstorm ideas on how to improve products.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="seperator"></div>
+
+                <div class="row">
+                    <div class="span section-title">
+                        Skills
+                    </div>
+
+                    <div class="span section-body">
+
+                        <div class="clearfix">
+
+                            <div class="margin-bottom-10"></div>
+
+                            <div class="subject-name">Languages</div>
+                            <ul>
+                                <li>Java</li>
+                                <li>C#</li>
+                                <li>Javascript</li>
+                            </ul>
+
+                            <div class="subject-name">Technologies</div>
+                            <ul>
+                                <li>ASP.NET MVC</li>
+                                <li>HTML/CSS</li>
+                                <li>Ajax</li>
+                                <li>jQuery</li>
+                                <li>knockoutjs</li>
+                                <li>DurandalJs</li>
+                                <li>Google Guice</li>
+                                <li>Sockets</li>
+                                <li>JUNIT</li>
+                                <li>JSON</li>
+                                <li>Git</li>
+                                <li>Subversion</li>
+                                <li>Clearcase</li>
+                                <li>XML</li>
+                            </ul>
+
+                            <div class="subject-name">Life Cycle</div>
+                            <ul>
+                                <li>Test Driven Development</li>
+                                <li>UML</li>
+                                <li>Object Oriented Design</li>
+                                <li>Continuous Integration</li>
+                                <li>Maven</li>
+                                <li>Jenkins</li>
+                            </ul>
+
+                            <div class="subject-name">Design Patterns</div>
+                            <ul>
+                                <li>MVC</li>
+                                <li>REST</li>
+                                <li>DRY</li>
+                                <li>Inversion of Control</li>
+                                <li>Dependency Injection</li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /skills-->
+
+                  <!-- /education-->
+
+                <div class="seperator"></div>
+
+                <div class="row">
+                    <div class="span section-title">
+                        Education
+                    </div>
+
+                    <div class="span section-body">
+
+                        <div class="clearfix">
+                            <div class="row">
+                                <div class="span">
+                                    <div class="item-name">Bachelor of Computer Science</div>
+                                    <div class="item-desc">University Of Central Florida</div>
+                                </div>
+                                <div class="item-period pull-right span">2004 - 2009</div>
+                            </div>
+<!--                            <div class="margin-top-10">
+                                <ul>
+                                    <li>Bank Risk Management, Banking Regulation</li>
+                                    <li>Corporate Finance, Financial Reporting and Analyses</li>
+                                    <li>Monetary Policy and Central Bank Operations</li>
+                                    <li>Trading in Global Financial Markets, Investment Analyses</li>
+                                    <li>Thesis: Gold Price Relation to Sovereign Debt</li>
+                                </ul>
+                            </div>-->
+                        </div>
+
+<!--                        <div class="inner-seperator"></div>
+
+                        <div class="clearfix">
+                            <div class="row">
+                                <div class="span">
+                                    <div class="item-name">Bachelor of Civil Engineering</div>
+                                    <div class="item-desc">Auburn University – Auburn, Alabama</div>
+                                </div>
+                                <div class="item-period pull-right span">2006 - 2010</div>
+                            </div>
+                            <div class="margin-top-10">
+                                <ul>
+                                    <li>Graduated magna cum laude with a 3.62 GPA</li>
+                                    <li>Member of Chi Epsilon and Tau Beta Pi (Engineering honorary societies)</li>
+                                    <li>Monetary Policy and Central Bank Operations</li>
+                                    <li>Thesis: Taught Introduction to Computers in Civil Engineering</li>
+                                </ul>
+                            </div>
+                        </div>-->
+
+                    </div>
+                </div>
+                <!-- /education-->
+
+<!--
+                <div class="seperator"></div>
+
+                <div class="row">
+                    <div class="span section-title">
+                        Awards & Certificates
+                    </div>
+                    <div class="span section-body">
+                        <ul>
+                            <li>2008 Certificate A in IT.</li>
+                            <li>2nd prize winner in National Programming Contest, 2012.</li>
+                            <li>3nd prize winner in State Math Olympiad, 2012.</li>
+                        </ul>
+                    </div>
+                </div>-->
+                <!-- /awards-->
+<!--
+                <div class="seperator"></div>
+
+                <div class="row">
+                    <div class="span section-title">
+                        Interests
+                    </div>
+                    <div class="span section-body">
+                        Swimming, travelling, cooking, photography, fishing.
+                    </div>
+                </div>-->
+                <!-- /interests-->
+
+                <div class="seperator"></div>
+
+                <div class="row">
+                    <div class="span section-title">
+                        References
+                    </div>
+                    <div class="span section-body">
+                        Available upon request.
+                    </div>
+                </div>
+
+                <div class="clearfix margin-bottom-10 pull-right">
+                    <a class="dotted" href="javascript:;"
+                       onclick="jQuery('html,body').animate({scrollTop: jQuery('.header').offset().top}, 'slow');"
+                       >
+                        top
+                    </a>
+                </div>
+
+            </div> <!-- /main -->
+
+        </div> <!-- /container -->
         <script src="Scripts/jquery-1.10.1.min.js"></script>
-        <script src="Scripts/knockout-2.2.1.js"></script>
         <script src="Scripts/bootstrap.min.js"></script>
-        <script src="Scripts/sammy-0.7.4-min.js"></script>
-        <script src="App/durandal/amd/require.js" data-main="App/main.js"></script>
+        <script>
+            jQuery(document).ready(function() {
+                jQuery('[rel="tooltip"]').tooltip({trigger : 'hover'});
+            })
+        </script>
     </body>
 </html>
