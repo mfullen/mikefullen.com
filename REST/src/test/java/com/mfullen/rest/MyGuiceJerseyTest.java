@@ -4,20 +4,13 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
 import com.google.inject.Scopes;
-import com.google.inject.persist.PersistFilter;
-import com.google.inject.persist.jpa.JpaPersistModule;
 import com.google.inject.servlet.GuiceFilter;
 import com.google.inject.servlet.GuiceServletContextListener;
 import com.google.inject.servlet.ServletModule;
-import com.mfullen.rest.authorization.AuthorizationService;
 import com.mfullen.rest.authorization.ResourceFilterFactory;
-import com.mfullen.rest.authorization.SecurityContextFilter;
-import com.mfullen.rest.authorization.SessionTokenAuthorizationService;
 import com.sun.jersey.api.core.ResourceConfig;
 import com.sun.jersey.api.json.JSONConfiguration;
 import com.sun.jersey.guice.spi.container.servlet.GuiceContainer;
-import com.sun.jersey.spi.container.ContainerRequestFilter;
-import com.sun.jersey.spi.container.ResourceFilter;
 import com.sun.jersey.test.framework.AppDescriptor;
 import com.sun.jersey.test.framework.JerseyTest;
 import com.sun.jersey.test.framework.WebAppDescriptor;
@@ -25,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
+import org.junit.After;
 import org.junit.Before;
 
 /**
@@ -40,6 +34,13 @@ public abstract class MyGuiceJerseyTest extends JerseyTest
     public void setUp() throws Exception
     {
         super.setUp();
+    }
+
+    @After
+    @Override
+    public void tearDown() throws Exception
+    {
+        super.tearDown();
     }
 
     public abstract List<Class> getClasses();

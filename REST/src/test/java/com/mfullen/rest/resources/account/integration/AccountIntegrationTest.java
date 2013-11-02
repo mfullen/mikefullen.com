@@ -44,6 +44,7 @@ import org.junit.Test;
  *
  * @author mfullen
  */
+
 public class AccountIntegrationTest extends BaseResourceTest
 {
 
@@ -57,8 +58,9 @@ public class AccountIntegrationTest extends BaseResourceTest
     }
 
     @After
-    public void tearDown()
+    public void tearDown() throws Exception
     {
+        super.tearDown();
     }
 
     protected String calculateAuthToken(String sessionToken, String stringToHash, String nonce, String currentDate)
